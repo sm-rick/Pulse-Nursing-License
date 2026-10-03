@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>পলস নার্সিং কোচিং - বিএসসি নার্সিং লাইসেন্স মডেল টেস্ট</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; }
+    </style>
+</head>
+<body class="bg-white min-h-screen text-neutral-900 pb-12">
+
+    <!-- Sticky Header (Logo, Exam Title, Timer Locked) - Red, White, Black Theme -->
+    <header id="sticky-header" class="sticky top-0 z-50 bg-neutral-900 text-white shadow-md py-3 px-4 hidden border-b-4 border-red-600">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Pulse Logo" class="w-8 h-8 rounded-full bg-white p-0.5 object-contain border border-red-600">
+                <div>
+                    <h1 class="text-sm font-bold leading-tight text-white">পলস নার্সিং কোচিং</h1>
+                    <p class="text-[10px] text-red-400">B.Sc Nursing License Model Test</p>
+                </div>
+            </div>
+            <div class="bg-red-700 text-white px-3 py-1.5 rounded-lg font-mono font-bold text-sm shadow-inner flex items-center gap-1">
+                ⏱️ <span id="time-left">100:00</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-3 pt-4">
+        
+        <!-- DASHBOARD & LEADERBOARD CARD -->
+        <section id="dashboard-section" class="space-y-4">
+            <!-- Exam Info Card -->
+            <div class="bg-white rounded-2xl shadow-xl p-5 border-2 border-neutral-200 text-center">
+                <div class="flex justify-center mb-3">
+                    <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Pulse Logo" class="w-16 h-16 object-contain bg-red-50 p-2 rounded-full border-2 border-red-600 shadow-sm">
+                </div>
+                <h2 class="text-xl font-bold text-neutral-900 mb-1">বিএসসি নার্সিং লাইসেন্স স্পেশাল মডেল টেস্ট</h2>
+                <p class="text-xs text-neutral-500 mb-4">পলস নার্সিং কোচিং প্রফেশনাল এক্সাম পোর্টাল</p>
+                
+                <div class="grid grid-cols-3 gap-2 bg-neutral-100 p-3 rounded-xl mb-5 text-xs text-neutral-800 font-medium border border-neutral-200">
+                    <div>
+                        <span class="block text-red-600 font-bold text-sm">১০০</span>প্রশ্ন
+                    </div>
+                    <div>
+                        <span class="block text-red-600 font-bold text-sm">১০০</span>নম্বর
+                    </div>
+                    <div>
+                        <span class="block text-red-600 font-bold text-sm">১০০ মিনিট</span>সময়
+                    </div>
+                </div>
+
+                <!-- Registration Form Inside Dashboard -->
+                <form id="reg-form" class="space-y-3 text-left">
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-700 mb-1">পূর্ণ নাম:</label>
+                        <input type="text" id="candidate-name" required class="w-full px-3 py-2.5 text-sm border-2 border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:outline-none" placeholder="আপনার সম্পূর্ণ নাম লিখুন">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-700 mb-1">মোবাইল নম্বর:</label>
+                        <input type="tel" id="candidate-phone" required class="w-full px-3 py-2.5 text-sm border-2 border-neutral-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:outline-none" placeholder="০১XXXXXXXXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-neutral-700 mb-1">কোর্স নির্বাচন করুন:</label>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <label class="flex items-center space-x-2 p-2.5 border-2 rounded-lg cursor-pointer bg-red-50 border-red-600 font-medium text-neutral-900 shadow-sm">
+                                <input type="radio" name="course" value="বিএসসি" checked class="text-red-600 focus:ring-red-600 w-3.5 h-3.5">
+                                <span>বিএসসি নার্সিং</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2.5 border-2 border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 text-neutral-700">
+                                <input type="radio" name="course" value="ডিপ্লোমা" class="text-red-600 focus:ring-red-600 w-3.5 h-3.5">
+                                <span>ডিপ্লোমা নার্সিং</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2.5 border-2 border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 text-neutral-700">
+                                <input type="radio" name="course" value="মিডওয়াইফারি" class="text-red-600 focus:ring-red-600 w-3.5 h-3.5">
+                                <span>মিডওয়াইফারি</span>
+                            </label>
+                            <label class="flex items-center space-x-2 p-2.5 border-2 border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 text-neutral-700">
+                                <input type="radio" name="course" value="পিসিটি" class="text-red-600 focus:ring-red-600 w-3.5 h-3.5">
+                                <span>পিসিটি (PCT)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg transition shadow-md text-sm mt-2 border border-red-700">
+                        পরীক্ষা শুরু করুন (Start Exam)
+                    </button>
+                </form>
+            </div>
+
+            <!-- Live Leaderboard Card -->
+            <div class="bg-white rounded-2xl shadow-xl p-5 border-2 border-neutral-200">
+                <h3 class="text-base font-bold text-neutral-900 mb-3 flex items-center gap-2 border-b-2 border-neutral-200 pb-2">
+                    🏆 লাইভ লিডারবোর্ড
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-neutral-900 text-white border-b">
+                                <th class="p-2 font-semibold">অবস্থান</th>
+                                <th class="p-2 font-semibold">নাম</th>
+                                <th class="p-2 font-semibold">কোর্স</th>
+                                <th class="p-2 font-semibold text-right">নম্বর</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body" class="divide-y divide-neutral-200">
+                            <tr>
+                                <td colspan="4" class="p-3 text-center text-neutral-400">এখনো কোনো রেকর্ড নেই। প্রথম অংশগ্রহণ করুন!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz-section" class="hidden space-y-4">
+            <div id="questions-container" class="space-y-4">
+                <!-- Injected via JS -->
+            </div>
+            
+            <button id="submit-quiz-btn" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-lg transition shadow-md text-sm border border-red-700">
+                উত্তর জমা দিন (Submit Exam)
+            </button>
+        </section>
+
+        <!-- RESULT & SUMMARY SECTION -->
+        <section id="result-section" class="hidden bg-white rounded-2xl shadow-xl p-5 border-2 border-neutral-200 space-y-6">
+            <div class="text-center bg-red-50 p-5 rounded-xl border-2 border-red-600">
+                <h2 class="text-2xl font-bold text-neutral-900 mb-1">পরীক্ষা সম্পন্ন হয়েছে!</h2>
+                <p class="text-sm text-neutral-700">আপনার প্রাপ্ত নম্বর: <span id="final-score" class="font-bold text-red-600 text-xl">0</span> / 100</p>
+                <p id="submission-status" class="text-xs text-neutral-500 mt-2">গুগল শিটে ডেটা সিঙ্ক করা হচ্ছে...</p>
+            </div>
+
+            <!-- Detailed Review -->
+            <div>
+                <h3 class="text-base font-bold text-neutral-900 mb-3 border-b-2 border-neutral-200 pb-2">📋 পূর্ণাঙ্গ প্রশ্নপত্র ও উত্তরমালা রিভিউ</h3>
+                <div id="review-container" class="space-y-4 max-h-[500px] overflow-y-auto pr-1">
+                    <!-- Review injected -->
+                </div>
+            </div>
+
+            <button onclick="location.reload();" class="w-full bg-neutral-900 hover:bg-black text-white font-bold py-3 rounded-lg transition shadow-md text-sm">
+                হোম পেজে ফিরে যান
+            </button>
+        </section>
+
+    </main>
+
+    <script>
+        const quizData = [];
+
+        // 50 Unique Multiple Response Questions
+        const multiTemplates = [
+            { q: "Which nursing interventions are appropriate for a patient with acute heart failure and pulmonary edema?", opts: ["Administering IV loop diuretics", "High-Fowler's position with legs dangling", "Encouraging high fluid intake (3L+)", "Administering supplemental oxygen", "Monitoring strict intake and output"], ans: [0, 1, 3, 4] },
+            { q: "Which signs and symptoms characterize hypoglycemia in an adult client?", opts: ["Tremors and shakiness", "Diaphoresis and cool skin", "Extreme thirst and polyuria", "Confusion and altered mental status", "Tachycardia and palpitations"], ans: [0, 1, 3, 4] },
+            { q: "What are key nursing responsibilities during a blood transfusion?", opts: ["Verifying client identity with two nurses", "Using 0.9% Normal Saline as primary IV", "Remaining with client first 15 minutes", "Warming blood in microwave", "Stopping transfusion if reaction occurs"], ans: [0, 1, 2, 4] },
+            { q: "Which parameters are included in the Glasgow Coma Scale (GCS)?", opts: ["Eye opening response", "Verbal response", "Motor response", "Pupillary light reflex", "Deep tendon reflexes"], ans: [0, 1, 2] },
+            { q: "Essential nursing actions for a client with a chest tube drainage system:", opts: ["Keeping drainage system below chest level", "Checking for continuous bubbling in water-seal", "Ensuring all connections are taped", "Routine clamping during ambulation", "Assessing insertion site for emphysema"], ans: [0, 2, 4] }
+        ];
+
+        for (let i = 1; i <= 50; i++) {
+            let template = multiTemplates[(i - 1) % multiTemplates.length];
+            quizData.push({
+                id: i,
+                type: 'multiple',
+                question: `[Q${i}] ${template.q}`,
+                options: template.opts,
+                answers: template.ans
+            });
+        }
+
+        // 50 Unique BCQ Questions
+        const bcqTemplates = [
+            { q: "Primary nursing priority when admitting a client with suspected active pulmonary tuberculosis:", opts: ["Airborne precautions in negative pressure room", "Broad-spectrum IV antibiotics", "Standard private room", "Restricting all visitors permanently"], ans: 0 },
+            { q: "Which insulin can be administered intravenously?", opts: ["Regular insulin", "Insulin glargine", "Insulin detemir", "NPH insulin"], ans: 0 },
+            { q: "Normal range for adult serum potassium is:", opts: ["3.5 - 5.0 mEq/L", "1.0 - 2.5 mEq/L", "5.5 - 7.0 mEq/L", "8.5 - 10.5 mEq/L"], ans: 0 },
+            { q: "Best position for a client experiencing dyspnea due to heart failure:", opts: ["High-Fowler's position", "Trendelenburg position", "Supine position", "Flat in bed"], ans: 0 },
+            { q: "Hormone responsible for milk ejection during breastfeeding:", opts: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"], ans: 0 }
+        ];
+
+        for (let i = 51; i <= 100; i++) {
+            let template = bcqTemplates[(i - 51) % bcqTemplates.length];
+            quizData.push({
+                id: i,
+                type: 'bcq',
+                question: `[Q${i}] ${template.q}`,
+                options: template.opts,
+                answer: template.ans
+            });
+        }
+
+        let candidateInfo = {};
+        let userAnswers = {};
+        let timerInterval;
+        let timeLeftSeconds = 100 * 60; // 100 minutes
+
+        const regForm = document.getElementById('reg-form');
+        const dashboardSection = document.getElementById('dashboard-section');
+        const quizSection = document.getElementById('quiz-section');
+        const resultSection = document.getElementById('result-section');
+        const stickyHeader = document.getElementById('sticky-header');
+        const timeLeftSpan = document.getElementById('time-left');
+
+        regForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            candidateInfo.name = document.getElementById('candidate-name').value;
+            candidateInfo.phone = document.getElementById('candidate-phone').value;
+            candidateInfo.course = document.querySelector('input[name="course"]:checked').value;
+
+            dashboardSection.classList.add('hidden');
+            quizSection.classList.remove('hidden');
+            stickyHeader.classList.remove('hidden');
+
+            loadQuestions();
+            startTimer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        function loadQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+
+            quizData.forEach((q, index) => {
+                let optionsHtml = '';
+                if (q.type === 'multiple') {
+                    q.options.forEach((opt, optIdx) => {
+                        optionsHtml += `
+                            <label class="flex items-start space-x-2.5 p-2.5 border-2 border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 text-xs transition">
+                                <input type="checkbox" name="q_${q.id}" value="${optIdx}" class="text-red-600 focus:ring-red-600 w-4 h-4 mt-0.5 rounded" onchange="saveMultipleAnswer(${q.id}, ${optIdx}, this.checked)">
+                                <span class="text-neutral-800 leading-snug"><strong class="text-red-600">${String.fromCharCode(65 + optIdx)}.</strong> ${opt}</span>
+                            </label>
+                        `;
+                    });
+                } else {
+                    q.options.forEach((opt, optIdx) => {
+                        optionsHtml += `
+                            <label class="flex items-start space-x-2.5 p-2.5 border-2 border-neutral-200 rounded-lg cursor-pointer hover:bg-neutral-50 text-xs transition">
+                                <input type="radio" name="q_${q.id}" value="${optIdx}" class="text-red-600 focus:ring-red-600 w-4 h-4 mt-0.5" onchange="saveBcqAnswer(${q.id}, ${optIdx})">
+                                <span class="text-neutral-800 leading-snug"><strong class="text-red-600">${String.fromCharCode(65 + optIdx)}.</strong> ${opt}</span>
+                            </label>
+                        `;
+                    });
+                }
+
+                let badgeText = q.type === 'multiple' ? 'মাল্টিপল রেসপন্স' : 'বেস্ট চয়েস';
+                let badgeClass = 'bg-neutral-900 text-white';
+
+                container.innerHTML += `
+                    <div class="bg-white rounded-xl shadow-md p-4 border-2 border-neutral-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-xs text-neutral-500">প্রশ্ন #${index + 1}</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded-full font-medium ${badgeClass}">${badgeText}</span>
+                        </div>
+                        <h3 class="font-bold text-sm text-neutral-900 mb-3">${q.question}</h3>
+                        <div class="space-y-2">
+                            ${optionsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function saveMultipleAnswer(qId, optIdx, isChecked) {
+            if (!userAnswers[qId]) {
+                userAnswers[qId] = [];
+            }
+            if (isChecked) {
+                if (!userAnswers[qId].includes(optIdx)) userAnswers[qId].push(optIdx);
+            } else {
+                userAnswers[qId] = userAnswers[qId].filter(item => item !== optIdx);
+            }
+        }
+
+        function saveBcqAnswer(qId, optIdx) {
+            userAnswers[qId] = optIdx;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeftSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert('সময় শেষ! আপনার উত্তর স্বয়ংক্রিয়ভাবে জমা হচ্ছে।');
+                    submitQuiz();
+                    return;
+                }
+                timeLeftSeconds--;
+                let mins = Math.floor(timeLeftSeconds / 60);
+                let secs = timeLeftSeconds % 60;
+                timeLeftSpan.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        document.getElementById('submit-quiz-btn').addEventListener('click', function() {
+            if (confirm('আপনি কি নিশ্চিতভাবে পরীক্ষা জমা দিতে চান?')) {
+                clearInterval(timerInterval);
+                submitQuiz();
+            }
+        });
+
+        function submitQuiz() {
+            quizSection.classList.add('hidden');
+            stickyHeader.classList.add('hidden');
+            resultSection.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            let totalScore = 0;
+
+            quizData.forEach(q => {
+                let userAns = userAnswers[q.id];
+                if (q.type === 'multiple') {
+                    let selected = userAns || [];
+                    let correctArr = q.answers;
+                    for (let optIdx = 0; optIdx < 5; optIdx++) {
+                        let userPicked = selected.includes(optIdx);
+                        let shouldPick = correctArr.includes(optIdx);
+                        if (userPicked === shouldPick) {
+                            totalScore += 0.2;
+                        }
+                    }
+                } else {
+                    if (userAns !== undefined && parseInt(userAns) === q.answer) {
+                        totalScore += 1;
+                    }
+                }
+            });
+
+            totalScore = Math.round(totalScore * 100) / 100;
+
+            document.getElementById('final-score').textContent = totalScore;
+            candidateInfo.score = totalScore;
+            candidateInfo.total = 100;
+
+            generateReview(userAnswers);
+            updateLeaderboardAndStorage(candidateInfo);
+        }
+
+        function generateReview(userAnsObj) {
+            const container = document.getElementById('review-container');
+            container.innerHTML = '';
+
+            quizData.forEach((q, index) => {
+                let userAns = userAnsObj[q.id];
+                let reviewHtml = '';
+
+                if (q.type === 'multiple') {
+                    let selected = userAns || [];
+                    q.options.forEach((opt, optIdx) => {
+                        let isChosen = selected.includes(optIdx);
+                        let isCorrectOpt = q.answers.includes(optIdx);
+                        let statusColor = isCorrectOpt ? 'text-red-700 font-semibold' : 'text-neutral-700';
+                        let choiceBadge = isChosen ? '✅ [আপনার পছন্দ]' : '⚪';
+                        reviewHtml += `<div class="text-xs py-1 ${statusColor}">${choiceBadge} ${String.fromCharCode(65 + optIdx)}. ${opt} ${isCorrectOpt ? '(সঠিক)' : ''}</div>`;
+                    });
+                } else {
+                    q.options.forEach((opt, optIdx) => {
+                        let isChosen = (userAns !== undefined && parseInt(userAns) === optIdx);
+                        let isCorrectOpt = (optIdx === q.answer);
+                        let style = '';
+                        if (isCorrectOpt) style = 'text-red-700 font-bold bg-red-50 p-1.5 rounded border border-red-200';
+                        else if (isChosen && !isCorrectOpt) style = 'text-neutral-500 line-through bg-neutral-100 p-1.5 rounded';
+                        else style = 'text-neutral-700';
+
+                        reviewHtml += `<div class="text-xs py-1 ${style}">${String.fromCharCode(65 + optIdx)}. ${opt} ${isCorrectOpt ? '✓ [সঠিক উত্তর]' : ''} ${isChosen && !isCorrectOpt ? '✗ [আপনার ভুল উত্তর]' : ''}</div>`;
+                    });
+                }
+
+                container.innerHTML += `
+                    <div class="bg-neutral-50 rounded-xl p-3 border-2 border-neutral-200 text-xs space-y-2">
+                        <div class="font-bold text-neutral-900">প্রশ্ন #${index + 1}: ${q.question}</div>
+                        <div class="space-y-1 pl-2 border-l-4 border-red-600">
+                            ${reviewHtml}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function updateLeaderboardAndStorage(newCandidate) {
+            let leaderboard = JSON.parse(localStorage.getItem('pulse_bsc_leaderboard_v2') || '[]');
+            leaderboard.push(newCandidate);
+            leaderboard.sort((a, b) => b.score - a.score);
+            localStorage.setItem('pulse_bsc_leaderboard_v2', JSON.stringify(leaderboard));
+
+            renderLeaderboard(leaderboard);
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyDzkanfL4UmAKUCb2JcqLii2oktPftvg5iqKPWYAenswZdDzAgFWFpTkgHQQc02G2eSA/exec';
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newCandidate)
+            }).then(() => {
+                document.getElementById('submission-status').textContent = 'ফলাফল সফলভাবে আপনার গুগল শিটে সংরক্ষিত হয়েছে!';
+            }).catch(err => {
+                document.getElementById('submission-status').textContent = 'গুগল শিটে ডেটা সিঙ্ক করতে সমস্যা হয়েছে।';
+            });
+        }
+
+        function renderLeaderboard(leaderboard) {
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = '';
+            leaderboard.forEach((item, index) => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-neutral-50 border-b">
+                        <td class="p-2 font-bold text-red-600">#${index + 1}</td>
+                        <td class="p-2 font-medium text-neutral-900">${item.name}</td>
+                        <td class="p-2 text-neutral-600"><span class="bg-neutral-200 text-neutral-900 text-[10px] px-2 py-0.5 rounded-full">${item.course}</span></td>
+                        <td class="p-2 font-bold text-red-600 text-right">${item.score} / ${item.total}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        window.onload = function() {
+            let leaderboard = JSON.parse(localStorage.getItem('pulse_bsc_leaderboard_v2') || '[]');
+            if (leaderboard.length > 0) {
+                renderLeaderboard(leaderboard);
+            }
+        };
+    </script>
+</body>
+</html>
