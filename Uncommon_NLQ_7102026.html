@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncommon Question in Nursing License - Pulse Nursing Coaching</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            min-height: 100vh;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        @media (min-width: 481px) {
+            .mobile-container {
+                min-height: 90vh;
+                border-radius: 20px;
+                margin: 20px 0;
+            }
+        }
+
+        /* Header UI */
+        .app-header {
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .exam-title-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .org-subtext {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .timer-badge {
+            background: #fee2e2;
+            color: var(--danger);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* Screen Management */
+        .screen {
+            display: none;
+            flex: 1;
+            padding: 20px;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* Registration Form */
+        .reg-header {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .reg-header img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .reg-header h2 {
+            font-size: 18px;
+            color: var(--primary-dark);
+        }
+
+        .reg-header p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Quiz Container */
+        .question-card {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .question-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tf-option-row {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .tf-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tf-btn-label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .option-item:hover {
+            background: #f3f4f6;
+        }
+
+        .option-item input {
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Result Screen */
+        .result-summary {
+            text-align: center;
+            padding: 25px 20px;
+            background: #eef2ff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        .review-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+
+        .review-card.correct { border-left: 5px solid var(--success); }
+        .review-card.incorrect { border-left: 5px solid var(--danger); }
+        
+        .ans-tag {
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        .ans-tag.correct-text { color: var(--success); }
+        .ans-tag.wrong-text { color: var(--danger); }
+    </style>
+</head>
+<body>
+
+<div class="mobile-container">
+
+    <!-- REGISTRATION SCREEN -->
+    <div id="screen-reg" class="screen active">
+        <div class="reg-header">
+            <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Pulse Logo">
+            <h2>Uncommon Question in Nursing License</h2>
+            <p>Organized by: Pulse Nursing Coaching</p>
+        </div>
+        <form id="regForm" onsubmit="startExam(event)">
+            <div class="form-group">
+                <label>আপনার নাম</label>
+                <input type="text" id="userName" class="form-control" required placeholder="পূর্ণ নাম লিখুন">
+            </div>
+            <div class="form-group">
+                <label>মোবাইল নাম্বার</label>
+                <input type="tel" id="userPhone" class="form-control" required placeholder="০১XXXXXXXXX">
+            </div>
+            <div class="form-group">
+                <label>কোর্স নির্বাচন করুন</label>
+                <select id="userCourse" class="form-control" required>
+                    <option value="">কোর্স সিলেক্ট করুন</option>
+                    <option value="বিএসসি">বিএসসি (BSc)</option>
+                    <option value="ডিপ্লোমা">ডিপ্লোমা (Diploma)</option>
+                    <option value="মিডওয়াইফারি">মিডওয়াইফারি (Midwifery)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" style="margin-top: 10px;">পরীক্ষা শুরু করুন</button>
+        </form>
+    </div>
+
+    <!-- EXAM SCREEN -->
+    <div id="screen-exam" class="screen" style="padding: 0;">
+        <div class="app-header">
+            <div class="logo-area">
+                <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Logo" class="logo-img">
+                <div>
+                    <div class="exam-title-header">Uncommon Question in Nursing License</div>
+                    <div class="org-subtext">Pulse Nursing Coaching</div>
+                </div>
+            </div>
+            <div class="timer-badge" id="timer">১০০:০০</div>
+        </div>
+        
+        <div style="padding: 20px;" id="questionsContainer">
+            <!-- Questions dynamically generated here -->
+        </div>
+
+        <div style="padding: 20px; background: white; border-top: 1px solid var(--border);">
+            <button type="button" class="btn" onclick="submitExam()">পরীক্ষা জমা দিন</button>
+        </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div id="screen-result" class="screen">
+        <div class="result-summary">
+            <h3>ফলাফল</h3>
+            <div class="score-display" id="finalScoreText">০ / ১০০</div>
+            <p id="subStatusText" style="color: var(--text-muted); font-size: 14px;"></p>
+        </div>
+
+        <h4>উত্তরপত্র ও মূল্যায়ন</h4>
+        <div id="reviewContainer" style="margin-top: 15px;">
+            <!-- Review items generated here -->
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // প্রশ্ন ডাটাবেজ (১০০ প্রশ্ন)
+    const questions = [
+        // --- SECTION A: MCQ (1-50) [True/False for each option, 5 options, each option 0.2 marks, total 10] ---
+        { id: 1, type: 'mcq', q: "1. Literature review helps for-", opts: ["Concept mapping", "Informed consent", "Presenting research findings", "Selecting data collecting tools", "Choosing research design"], ans: [true, false, true, true, true] },
+        { id: 2, type: 'mcq', q: "2. Potassium helps to maintain-", opts: ["Healthy life", "Maintain normal health", "Bone formation", "Keeps heart & kidney functioning", "Increase weight"], ans: [true, true, false, true, false] },
+        { id: 3, type: 'mcq', q: "3. The nurse caring for a client with acute exacerbation note on assessment? Which findings would the nurse expect to encounter?", opts: ["A widened diaphragm noted on the chest x-ray", "Decreased oxygen saturation with mild exercise", "A low arterial PCO2 level", "Pulmonary function tests that demonstrate increased vital capacity", "Hyperinflated chest, noted on the chest x-ray"], ans: [true, true, false, false, true] },
+        { id: 4, type: 'mcq', q: "4. Maternal mortality can be reduced by-", opts: ["Improvement of health status", "Less intake of nutrition", "Available facilities of EOC (Emergency Obstetric Care)", "Negligence of health status", "Irregular antenatal check-up"], ans: [true, false, true, false, false] },
+        { id: 5, type: 'mcq', q: "5. Indication of D & C (Dilatation & Curettage) are-", opts: ["Remove tissues remaining in the womb", "Retained placenta", "Incomplete abortion / retained products of conception", "For confirming pregnancy", "To detect fetus position"], ans: [true, true, true, false, false] },
+        { id: 6, type: 'mcq', q: "6. Which reasons highly occur in miscarriage?", opts: ["Retained placenta", "Maternal age more than 35 years", "Chromosomal abnormalities", "Fibroid uterus", "Severe hemorrhage"], ans: [false, true, true, true, false] },
+        { id: 7, type: 'mcq', q: "7. Which of the following steps should be taken immediately after birth to manage the baby?", opts: ["APGAR scoring", "Dry & stimulate the baby", "Start oral feeding", "Cut and tie the umbilical cord", "Height and weight measurement"], ans: [true, true, false, true, false] },
+        { id: 8, type: 'mcq', q: "8. During antenatal visit counseling should be done regarding-", opts: ["Nutrition", "Birth plan", "Use of vitamin A in 1st trimester", "Immunization", "Against tobacco use"], ans: [true, true, false, true, true] },
+        { id: 9, type: 'mcq', q: "9. Physiological changes during pregnancy are-", opts: ["Dependent edema", "Soft systolic murmur", "Decrease body weight", "Increase pulse rate", "Asymptomatic bacteriuria"], ans: [true, true, false, true, false] },
+        { id: 10, type: 'mcq', q: "10. Following complications of postnatal period are-", opts: ["Puerperal sepsis", "Secondary haemorrhage", "Urinary tract infection", "Malnutrition", "Swelling of feet"], ans: [true, true, true, false, false] },
+        { id: 11, type: 'mcq', q: "11. Following are fetal distress diagnosed by-", opts: ["Less fetal movement", "Meconium stained liquor / FHR > 180/minute", "Early deceleration", "Color of amniotic fluid", "Extreme loss of weight"], ans: [true, true, false, false, false] },
+        { id: 12, type: 'mcq', q: "12. Debriefing means-", opts: ["Timely", "Judgment free", "Constructive", "Based on direct observation", "Professional"], ans: [true, false, true, true, true] },
+        { id: 13, type: 'mcq', q: "13. What is midwifery experience?", opts: ["Pregnancy, labour & birth", "Education program", "The first 6 weeks after birth", "Empower the women", "It is a normal life event"], ans: [true, false, true, true, true] },
+        { id: 14, type: 'mcq', q: "14. Following are the normal pelvic measurements-", opts: ["Pelvic brim consists of 11 cm / 12 cm / 13 cm", "Pelvic cavity consists of 13 cm / 15 cm / 12 cm", "Pelvic cavity consists of 12 cm / 12 cm / 12 cm", "Pelvic outlet consists of 13 cm / 11 cm / 11 cm (approx)", "Pelvic brim consists of 11 cm / 12 cm / 14 cm"], ans: [true, false, true, true, false] },
+        { id: 15, type: 'mcq', q: "15. Following are colostrum's composition-", opts: ["Protein 8.6%", "Fat 2.3%", "Carbohydrate 3.2%", "Water 87%", "Magnesium 0.01%"], ans: [true, true, true, false, false] },
+        { id: 16, type: 'mcq', q: "16. Airborne diseases are-", opts: ["Chicken pox", "Cholera", "Tuberculosis", "Typhoid fever", "Mumps"], ans: [true, false, true, false, true] },
+        { id: 17, type: 'mcq', q: "17. The drugs used for induction of labour include-", opts: ["Ergometrine", "Oxytocin", "Bronchodilators", "Prostaglandin", "Progesterone"], ans: [false, true, false, true, false] },
+        { id: 18, type: 'mcq', q: "18. Oligohydramnios is characteristically associated with-", opts: ["Post maturity", "Fetal polycystic kidneys / renal agenesis", "Rhesus alloimmunization", "Haemangioma of the placenta", "Diabetes mellitus"], ans: [true, true, false, false, false] },
+        { id: 19, type: 'mcq', q: "19. Properties of oxygen are-", opts: ["Colorless", "No defined shape", "Odorless", "Liquefied at low temperature", "Tasteless"], ans: [true, true, true, false, true] },
+        { id: 20, type: 'mcq', q: "20. Range of hemoglobin are-", opts: ["Adult male: 15-18 gm/dl", "Adult female: 12-15.5 gm/dl", "Adult male: 14-18 gm/dl", "Adult female: 10-12 gm/dl", "One year: ~12 gm/dl"], ans: [false, true, true, false, true] },
+        { id: 21, type: 'mcq', q: "21. Electrolyte range-", opts: ["Na+ 135-146 mmol/L", "Na : 125-136 mmol/L", "Other range data", "Extra range data", "Ca2+: 2.2 mmol/L (approx)"], ans: [true, false, false, false, true] },
+        { id: 22, type: 'mcq', q: "22. Childhood life span periods-", opts: ["Toddler: 18 months - 3 years", "5-7 years", "Preschool: 3-5 years", "7-12 years", "School age: 5-12 years"], ans: [true, false, true, false, true] },
+        { id: 23, type: 'mcq', q: "23. Sign and symptoms of puerperal sepsis are-", opts: ["Foul smelling vaginal discharge", "Vomiting", "High fever", "Diarrhea", "Lower abdominal pain"], ans: [true, false, true, false, true] },
+        { id: 24, type: 'mcq', q: "24. What are the nicknames associated with people in nursing history?", opts: ["Helping 1st person in nursing", "The midnight princess", "Ideology of nursing", "The lady with the lamp", "Pioneer / modern nursing"], ans: [false, false, false, true, true] },
+        { id: 25, type: 'mcq', q: "25. Correct shape of heart, kidney, liver, lungs, ovary & uterus-", opts: ["Heart & lungs - Conical shape", "Kidney - Bean shape", "Uterus & ovary - Pear & oval shape", "Stomach J shape", "Ovary - Pyramid"], ans: [true, true, true, false, false] },
+        { id: 26, type: 'mcq', q: "26. Drug metabolism / excretion / distribution occurs in-", opts: ["Liver - Metabolism", "Kidney - Excretion", "Placenta - Metabolism", "Stomach - Distribution", "Fluid / tissue - Distribution"], ans: [true, true, false, false, true] },
+        { id: 27, type: 'mcq', q: "27. Causes of low birth weight are-", opts: ["Poverty", "Early marriage", "Intake of low protein", "Higher education", "Malnourished mother"], ans: [true, true, true, false, true] },
+        { id: 28, type: 'mcq', q: "28. Common sites of ectopic pregnancy-", opts: ["Fallopian tube", "Abdominal cavity", "Ureter", "Broad ligament", "Ovary"], ans: [true, true, false, true, true] },
+        { id: 29, type: 'mcq', q: "29. Immediate complications of fracture are-", opts: ["Loss of function", "Pain", "Non-union", "Shock", "Malunion"], ans: [true, true, false, true, false] },
+        { id: 30, type: 'mcq', q: "30. The nurse caring for a patient who begins to experience seizure activity while in bed. Which actions would the nurse take?", opts: ["Loosening restrictive clothing", "Restraining the client's limbs", "Removing the pillow and raising padded side rails", "Positioning the client to the side, if possible, with the head flexed forward", "Keeping the curtain around the client and the room door open"], ans: [true, false, true, true, false] },
+        { id: 31, type: 'mcq', q: "31. The community nurse is conducting an educational session regarding signs and symptoms of tuberculosis. Tuberculosis is considered as a diagnosis when which signs and symptoms are present?", opts: ["Dyspnea", "Headache", "Night sweats", "A bloody productive cough", "Dry cough"], ans: [true, false, true, true, false] },
+        { id: 32, type: 'mcq', q: "32. Physiological risks associated with prolonged immobility are-", opts: ["Decreased cardiac output", "Decreased bone re-absorption", "Decreased serum sodium level", "Increased hemoglobin formation", "Increased serum creatinine"], ans: [true, false, false, false, false] },
+        { id: 33, type: 'mcq', q: "33. Democratic leadership is characterized by-", opts: ["Motivated followers by coercion", "Criticism is punitive", "Less control over followers", "Disperse decision throughout the group", "Criticism is constructive"], ans: [false, false, true, true, true] },
+        { id: 34, type: 'mcq', q: "34. Diabetes mellitus leads to-", opts: ["Increased blood glucose level", "Increased TSH level", "Decreased blood pressure", "Decreased potassium level", "Decreased wound healing"], ans: [true, false, false, false, true] },
+        { id: 35, type: 'mcq', q: "35. High risk babies are-", opts: ["Birth weight less than 2.5 kg", "Birth weight more than 2.5 kg", "Artificial feeding babies", "Exclusive breast-feeding babies", "Weight below 70% of expected weight"], ans: [true, false, true, false, true] },
+        { id: 36, type: 'mcq', q: "36. Research methodology includes-", opts: ["Data collection", "Literature review", "Framework formulation", "Sample and sampling procedure", "Data analysis"], ans: [true, true, true, true, true] },
+        { id: 37, type: 'mcq', q: "37. Stages of death / grief (Kubler-Ross) are-", opts: ["Depression", "Disagreement", "Suppression", "Denial", "Bargaining"], ans: [true, false, false, true, true] },
+        { id: 38, type: 'mcq', q: "38. The nurse caring for a patient who begins to experience seizure activity while in bed.", opts: ["Loosening restrictive clothing", "Restraining the client's limbs", "Removing the pillow and raising padded side rails", "Positioning the client to the side, if possible, with the head flexed forward", "Keeping the curtain around the client and the room door open"], ans: [true, false, true, true, false] },
+        { id: 39, type: 'mcq', q: "39. A patient who has diarrhoea for the past four days. When assessing the patient, the nurse can get the following findings-", opts: ["Hypotension", "Bradycardia", "Weakness", "Peripheral edema", "Poor skin turgor"], ans: [true, false, true, false, true] },
+        { id: 40, type: 'mcq', q: "40. A nurse caring for a patient with heart failure; the patient suddenly develops extreme dyspnea, tachycardia, and lung crackles. Priority interventions-", opts: ["Administering oxygen", "Inserting a Foley's catheter", "Placing the patient in a low Fowler's side lying position", "Transporting the patient to the coronary care unit", "Administering furosemide"], ans: [true, false, false, false, true] },
+        { id: 41, type: 'mcq', q: "41. Which interventions are appropriate for a client in alcohol withdrawal?", opts: ["Monitor vital signs", "Provide a safe environment", "Provide stimulation in the environment", "Address hallucinations therapeutically", "Maintain nothing by mouth"], ans: [true, true, false, true, false] },
+        { id: 42, type: 'mcq', q: "42. Which cast care instructions would be appropriate for the nurse to provide?", opts: ["Keep the cast clean and dry", "Allow the cast 24-48 hours to dry", "Keep the cast and extremity elevated", "Expect tingling and numbness in the extremity", "Use a hair dryer set on a warm to hot setting"], ans: [true, true, true, false, false] },
+        { id: 43, type: 'mcq', q: "43. Tuberculosis is considered as a diagnosis when which signs and symptoms are present?", opts: ["Dyspnea", "Headache", "Night sweats", "Dry cough", "A bloody productive cough"], ans: [true, false, true, false, true] },
+        { id: 44, type: 'mcq', q: "44. A patient develops an anaphylactic reaction after receiving morphine. The nurse would take which interventions?", opts: ["Administer oxygen", "Leave the client briefly to contact a primary healthcare provider", "Assess patient condition / Quickly assess the client's respiratory status", "Document the event, intervention and client response", "Quickly assess respiratory status again"], ans: [true, false, true, true, true] },
+        { id: 45, type: 'mcq', q: "45. Which findings are characteristic of digoxin toxicity?", opts: ["Tremors", "Diarrhea", "Irritability", "Blurred vision / visual changes (yellow-green)", "Nausea and vomiting"], ans: [false, true, false, true, true] },
+        { id: 46, type: 'mcq', q: "46. Quarantine means-", opts: ["Separate & restrict the movement of well persons who may have been exposed", "Restriction of community or group", "Restriction of healthy contacts", "Maintained in non-communicable disease", "Maintained in communicable disease"], ans: [true, false, false, false, true] },
+        { id: 47, type: 'mcq', q: "47. Problem solving approach to clinical practice that integrates-", opts: ["Professional commitment", "Search for strong clinical question / evidence", "Societal need", "One's own clinical expertise", "Patient's preferences and values"], ans: [false, true, false, true, true] },
+        { id: 48, type: 'mcq', q: "48. Principles of effective supervision include-", opts: ["Subordinates must understand the expected goal", "Well planned", "Create good work culture and climate", "Provision of autocratic supervision", "Make yourself as an acceptable supervisor"], ans: [true, true, true, false, true] },
+        { id: 49, type: 'mcq', q: "49. Conditions creating conflict situations are-", opts: ["Precise jurisdiction", "Behavior regulation issues", "Effective communication", "Independence of one party", "Goal incompatibility"], ans: [false, true, false, false, true] },
+        { id: 50, type: 'mcq', q: "50. Rules of umbilical cord cutting & tying-", opts: ["1st tie two-finger away from the umbilicus", "2nd tie one-finger away from the first tie", "2nd tie two-finger away from the 1st tie", "1st tie three-finger away from the umbilicus", "Cut between the two ties"], ans: [true, true, false, false, true] },
+
+        // --- SECTION B: BCQ (51-100) [Single correct, 4 options, each 1 mark, total 50] ---
+        { id: 51, type: 'bcq', q: "51. How often should a patient's bleeding and uterine tone be checked after delivery of the placenta?", opts: ["Every 10 minutes for the first 6 hours", "Every 15 minutes for the first 2 hours after delivery", "Once an hour for the first 24 hours", "Once a day for the first week"], ans: 1 },
+        { id: 52, type: 'bcq', q: "52. A 35-year-old woman, 5 days postpartum, complains of pain, redness and swelling in her left calf. Best next step?", opts: ["Start oral antibiotics immediately", "Measure calf circumference and perform Doppler ultrasonography", "Encourage heavy exercise", "Ignore, it is normal postpartum swelling"], ans: 1 },
+        { id: 53, type: 'bcq', q: "53. A 24-year-old G2P1 at 9 weeks pregnancy presents with bleeding, passage of tissue and lower abdominal pain. Diagnosis is-", opts: ["Threatened abortion", "Complete abortion", "Incomplete abortion", "Ectopic pregnancy"], ans: 2 },
+        { id: 54, type: 'bcq', q: "54. A rural health facility manages PPH using oxytocin, manual removal of placenta and neonatal resuscitation but cannot do C/S. Type of care:", opts: ["Routine antenatal care", "Comprehensive emergency obstetric care", "Basic emergency obstetric care (BEMOC)", "Postnatal supportive care"], ans: 2 },
+        { id: 55, type: 'bcq', q: "55. Three main causes of bleeding after birth?", opts: ["Soft uterus (atony), a retained placenta & perineal tearing (trauma)", "Soft uterus, malaria & dehydration", "Retained placenta, malaria & perineal tearing", "Soft uterus, twins & perineal tearing"], ans: 0 },
+        { id: 56, type: 'bcq', q: "56. A young woman came to health centre with history of sexual violence. Prioritized clinical management:", opts: ["Treat for STI presumptively", "Treat or prevent pregnancy", "Ensure safety and psychological first aid", "Control pregnancy"], ans: 2 },
+        { id: 57, type: 'bcq', q: "57. A baby is born through meconium-stained amniotic fluid. Which statement is TRUE?", opts: ["Stimulate the baby and then clear the airway", "Meconium cannot be inhaled into the lungs", "Clear the airway before drying/stimulating if the baby is not vigorous", "All babies can receive routine care"], ans: 2 },
+        { id: 58, type: 'bcq', q: "58. Mrs. Moni comes with severe abdominal pain and heavy bleeding 2 days after abortion. Priority action:", opts: ["Assure the patient", "Provide pain killer", "Immediate clinical assessment and stabilize the patient", "Give antibiotic"], ans: 2 },
+        { id: 59, type: 'bcq', q: "59. During labour monitoring, correct partograph plotting statement:", opts: ["Cervical dilatation is to be plotted every 4 hours", "Fetal heart rate every 40 seconds", "Uterine contraction every 30 minutes", "Descent of the head every 2 hours"], ans: 0 },
+        { id: 60, type: 'bcq', q: "60. Which medication should be avoided by the client with acute pancreatitis?", opts: ["Demerol (Meperidine)", "Pepcid (Famotidine)", "Zantac (Ranitidine)", "Duramorph (Morphine sulfate)"], ans: 3 },
+        { id: 61, type: 'bcq', q: "61. The goals of nutritional management of a patient with diabetes include all except-", opts: ["Provision of all food constituents e.g. Vitamins and minerals", "Increase of blood lipid levels", "Achievement and maintenance of reasonable weight", "Meeting energy needs"], ans: 1 },
+        { id: 62, type: 'bcq', q: "62. Disseminated intravascular coagulation often results in complications initially associated with:", opts: ["Brain", "Kidney", "Lung", "Stomach"], ans: 1 },
+        { id: 63, type: 'bcq', q: "63. Lab test result on a 24-hour post-burn client to report immediately:", opts: ["Potassium 7.5 mEq/L", "Sodium 131 mEq/L", "Arterial pH 7.34", "Hematocrit 52%"], ans: 0 },
+        { id: 64, type: 'bcq', q: "64. Adverse reactions to Captopril to be alert for:", opts: ["Increased red cell count", "Decreased sodium level", "Decreased white cell count (neutropenia / agranulocytosis)", "Increased calcium level"], ans: 2 },
+        { id: 65, type: 'bcq', q: "65. Nutritional recommendation for pregnant women to support fetal brain and spinal cord development:", opts: ["Intake nutritious food", "Intake plenty of fluid", "Adequate amount of folate / folic acid", "Adequate amount of Iodine rich food"], ans: 2 },
+        { id: 66, type: 'bcq', q: "66. Sign & symptoms of Intra-Uterine Death (IUD) include-", opts: ["Fetal Heart Sound (FHS) present", "Fetal Heart Sound (FHS) absent", "Fetal Movement Present", "Meconium Present"], ans: 1 },
+        { id: 67, type: 'bcq', q: "67. Placenta secretes which hormone primarily?", opts: ["Human chorionic gonadotropin (hCG)", "Prolactin hormone", "Growth hormone", "Follicle stimulating hormone"], ans: 0 },
+        { id: 68, type: 'bcq', q: "68. Most common cause of maternal mortality in first trimester-", opts: ["Uterine bleeding", "Prior pelvic surgery", "Infection", "Ectopic pregnancy"], ans: 3 },
+        { id: 69, type: 'bcq', q: "69. Formative assessments are used to-", opts: ["Assess students at end of course", "Identifying strength and weakness", "Test practical learning", "Address strength of each student"], ans: 1 },
+        { id: 70, type: 'bcq', q: "70. Three main causes of bleeding after birth:", opts: ["Soft uterus, a retained placenta and perineal tearing", "Soft uterus, malaria and dehydration", "Retained placenta, malaria and perineal tearing", "Soft uterus, twins and perineal tearing"], ans: 0 },
+        { id: 71, type: 'bcq', q: "71. ECG change most characteristic of Myocardial Infarction (MI) in acute phase:", opts: ["ST-segment depression", "ST-segment elevation", "T-wave inversion", "Prolonged PR interval"], ans: 1 },
+        { id: 72, type: 'bcq', q: "72. Components of Glasgow Coma Scale (GCS):", opts: ["Pupil response, motor response", "Eye opening, verbal response, motor response", "Eye opening, papillary reflex", "Blood pressure, heart rate"], ans: 1 },
+        { id: 73, type: 'bcq', q: "73. Which sentence is correct?", opts: ["Neither of the boys are guilty", "Neither of the boys is guilty", "Neither of the boy are guilty", "Neither boy are guilty"], ans: 1 },
+        { id: 74, type: 'bcq', q: "74. The apical pulse is assessed by placing stethoscope diaphragm at:", opts: ["Right second intercostal space", "Left 5th intercostal space, midclavicular line", "Left 2nd intercostal space", "Left 3rd intercostal space"], ans: 1 },
+        { id: 75, type: 'bcq', q: "75. Which group covers all STDs / STIs?", opts: ["AIDS, hemophilia, hepatitis B", "Cholera, Syphilis, AIDS", "Gonorrhoea, hepatitis B and Chlamydiasis", "HIV, malaria, trichomoniasis"], ans: 2 },
+        { id: 76, type: 'bcq', q: "76. Menarche is-", opts: ["Women's periods stop", "Women's periods commence (first menstruation)", "Spontaneous heavy bleeding", "Irregular periods"], ans: 1 },
+        { id: 77, type: 'bcq', q: "77. Haemothorax is-", opts: ["Collection of pus in pleural space", "Collection of air in pleural space", "Collection of blood in pleural space", "Collection of synovial fluid"], ans: 2 },
+        { id: 78, type: 'bcq', q: "78. A condition characterized by severe symptoms of relatively short duration:", opts: ["Chronic illness", "Acute illness", "Pain", "Syndrome"], ans: 1 },
+        { id: 79, type: 'bcq', q: "79. An IQ is a ratio of-", opts: ["Chronological & mental age", "Mental age / Chronological age x 100", "Present & past age", "Self and parents age"], ans: 1 },
+        { id: 80, type: 'bcq', q: "80. Prateek, 5 years child, weight loss, fever, loss of appetite, murmuring sound > 2 weeks. Diagnosis:", opts: ["Asthma", "Jaundice", "Tuberculosis", "Pneumonia"], ans: 2 },
+        { id: 81, type: 'bcq', q: "81. Who discovered / developed the partograph?", opts: ["Friedman", "Dr. A.L. Mudaliar", "Dr. William Shaw", "Dr. Shirodkar"], ans: 0 },
+        { id: 82, type: 'bcq', q: "82. Collection of fluid in the pleural sac is called-", opts: ["Pleural effusion", "Pleural infection", "Pleuritis", "Pneumonia"], ans: 0 },
+        { id: 83, type: 'bcq', q: "83. The sum of all chemical reactions in the body is termed as-", opts: ["Homeostasis", "Physiology", "Metabolism", "Excretion"], ans: 2 },
+        { id: 84, type: 'bcq', q: "84. Vitamin best for eye sight:", opts: ["Vitamin C", "Vitamin A", "Vitamin D", "Vitamin B"], ans: 1 },
+        { id: 85, type: 'bcq', q: "85. Unconscious patient bath observation to report immediately:", opts: ["Cloudy urine in Foley bag", "Incontinent of stool", "Trying to talk", "Redness and swelling at the pressure point"], ans: 3 },
+        { id: 86, type: 'bcq', q: "86. Time interval between entry of infective agent and clinical manifestations:", opts: ["Incubation period", "Prodromal period", "Specific illness period", "Recovery period"], ans: 0 },
+        { id: 87, type: 'bcq', q: "87. Four areas of the body to obtain body temperature:", opts: ["Oral, rectal, axilla, ear canal (tympanic)", "Rectal, oral, behind ear, axilla", "Oral, sole of foot, thigh, bladder", "Rectal, behind ear, axilla, thigh"], ans: 0 },
+        { id: 88, type: 'bcq', q: "88. Criterion in priority setting used only in community health care:", opts: ["Modifiability of the problem", "Nature of the problem presented", "Magnitude of the health problem", "Preventive potential"], ans: 2 },
+        { id: 89, type: 'bcq', q: "89. Part of the brain that controls the heart (vital centers):", opts: ["Spinal cord", "Neuron", "Medulla oblongata", "None of these"], ans: 2 },
+        { id: 90, type: 'bcq', q: "90. Fatty liver syndrome is due to excessive intake of-", opts: ["Morphine", "Alcohol", "Tobacco", "Both b and c"], ans: 1 },
+        { id: 91, type: 'bcq', q: "91. 4 year old, 15 kg, dehydration secondary to gastroenteritis, fluid deficit replaced:", opts: ["Within an hour", "Within 48 hours", "Via nasogastric / intravenous route as appropriate", "Within 72 hours"], ans: 2 },
+        { id: 92, type: 'bcq', q: "92. Dehydration makes blood grow-", opts: ["Thinner", "Murkier", "Redder", "Viscous / Thicker (Option d)"], ans: 3 },
+        { id: 93, type: 'bcq', q: "93. The name embryo is given up to -", opts: ["0-14 days", "15 days to 8 weeks", "9-16 weeks", "17 weeks to birth"], ans: 1 },
+        { id: 94, type: 'bcq', q: "94. Colour and duration of lochia alba:", opts: ["Red and 1-4 days", "Yellowish/pink and 4-9 days", "Pale white / creamy and 10-15 days or longer", "Bright red after 15 days"], ans: 2 },
+        { id: 95, type: 'bcq', q: "95. For effective sterilization, autoclave temperature should be:", opts: ["100 degree C", "121 degree C", "110 degree C", "90 degree C"], ans: 1 },
+        { id: 96, type: 'bcq', q: "96. Most common mode of transmission of polio:", opts: ["Droplet", "Faeco-oral", "Parenteral", "By infected articles"], ans: 1 },
+        { id: 97, type: 'bcq', q: "97. Concentration of sodium in body less than normal:", opts: ["Hypernatremia", "Hyponatremia", "Orthonatremia", "Tachynatremia"], ans: 1 },
+        { id: 98, type: 'bcq', q: "98. Ideal position to prevent aspiration during NG tube feeding:", opts: ["Side lying position", "Head end elevation at 30-45 degree", "Head down position", "Supine position"], ans: 1 },
+        { id: 99, type: 'bcq', q: "99. Sarcoma is cancer of-", opts: ["Bones", "Adipose tissue", "Connective tissue and muscular tissue", "All of the above"], ans: 3 },
+        { id: 100, type: 'bcq', q: "100. TAB vaccine is useful against-", opts: ["Polio", "Diphtheria", "Pertussis", "Typhoid"], ans: 3 }
+    ];
+
+    let userData = { name: '', phone: '', course: '' };
+    let userAnswers = {};
+    let timerInterval;
+    let timeLeft = 100 * 60; // ১০০ মিনিট কাউন্টডাউন
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzYYMLoOMqFdqQRx59y_rlZnxj1rLhSu-r_N4n75VUf6rbZJonDf7kRN6i7Mesk_qNNTA/exec';
+
+    function startExam(e) {
+        e.preventDefault();
+        userData.name = document.getElementById('userName').value;
+        userData.phone = document.getElementById('userPhone').value;
+        userData.course = document.getElementById('userCourse').value;
+
+        document.getElementById('screen-reg').classList.remove('active');
+        document.getElementById('screen-exam').classList.add('active');
+
+        renderQuestions();
+        startTimer();
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitExam();
+                return;
+            }
+            timeLeft--;
+            let mins = Math.floor(timeLeft / 60);
+            let secs = timeLeft % 60;
+            document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }, 1000);
+    }
+
+    function renderQuestions() {
+        const container = document.getElementById('questionsContainer');
+        let html = '';
+
+        questions.forEach((q, qIndex) => {
+            html += `<div class="question-card">
+                <div class="question-title">${q.q}</div>
+                <div class="options-list">`;
+            
+            if (q.type === 'mcq') {
+                // প্রথম ৫০টি প্রশ্নের জন্য প্রতিটি অপশনে True / False রেডিও বাটন
+                q.opts.forEach((opt, oIndex) => {
+                    html += `<div class="tf-option-row">
+                        <span>${opt}</span>
+                        <div class="tf-buttons">
+                            <label class="tf-btn-label"><input type="radio" name="q_${qIndex}_opt_${oIndex}" value="true" onchange="handleTFSelect(${qIndex}, ${oIndex}, true)"> True</label>
+                            <label class="tf-btn-label"><input type="radio" name="q_${qIndex}_opt_${oIndex}" value="false" onchange="handleTFSelect(${qIndex}, ${oIndex}, false)"> False</label>
+                        </div>
+                    </div>`;
+                });
+            } else {
+                // বাকি ৫০টি প্রশ্নের জন্য সিঙ্গেল কারেক্ট অ্যানসার
+                q.opts.forEach((opt, oIndex) => {
+                    html += `<label class="option-item">
+                        <input type="radio" name="q_${qIndex}" value="${oIndex}" onchange="handleBCQSelect(${qIndex}, ${oIndex})">
+                        <span>${opt}</span>
+                    </label>`;
+                });
+            }
+
+            html += `</div></div>`;
+        });
+
+        container.innerHTML = html;
+    }
+
+    function handleTFSelect(qIndex, oIndex, val) {
+        if (!userAnswers[qIndex]) {
+            userAnswers[qIndex] = {};
+        }
+        userAnswers[qIndex][oIndex] = val;
+    }
+
+    function handleBCQSelect(qIndex, oIndex) {
+        userAnswers[qIndex] = oIndex;
+    }
+
+    function submitExam() {
+        clearInterval(timerInterval);
+        
+        let totalScore = 0;
+        let reviewHtml = '';
+
+        questions.forEach((q, qIndex) => {
+            let userAns = userAnswers[qIndex];
+            let isCorrect = false;
+
+            if (q.type === 'mcq') {
+                let uAnsMap = userAns || {};
+                let qScore = 0;
+                let allMatch = true;
+
+                // ৫টি অপশনের প্রতিটির মান ০.২ (True বা False সঠিক দিলে ০.২)
+                for (let i = 0; i < q.ans.length; i++) {
+                    let userChoice = uAnsMap[i]; // true অথবা false অথবা undefined
+                    if (userChoice === q.ans[i]) {
+                        qScore += 0.2;
+                    } else {
+                        allMatch = false;
+                    }
+                }
+                totalScore += qScore;
+                if (allMatch) isCorrect = true;
+
+            } else {
+                if (userAns === q.ans) {
+                    totalScore += 1;
+                    isCorrect = true;
+                }
+            }
+
+            reviewHtml += `<div class="review-card ${isCorrect ? 'correct' : 'incorrect'}">
+                <strong>${q.q}</strong>
+                <div class="ans-tag ${isCorrect ? 'correct-text' : 'wrong-text'}">
+                    স্ট্যাটাস: ${isCorrect ? 'সঠিক' : 'অসম্পূর্ণ/ভুল'}
+                </div>
+            </div>`;
+        });
+
+        let finalScoreFormatted = totalScore.toFixed(2);
+
+        document.getElementById('screen-exam').classList.remove('active');
+        document.getElementById('screen-result').classList.add('active');
+        document.getElementById('finalScoreText').innerText = `${finalScoreFormatted} / ১০০`;
+        document.getElementById('subStatusText').innerText = `নাম: ${userData.name} | কোর্স: ${userData.course}`;
+        document.getElementById('reviewContainer').innerHTML = reviewHtml;
+
+        sendDataToGoogleSheet(finalScoreFormatted);
+    }
+
+    function sendDataToGoogleSheet(score) {
+        const payload = {
+            name: userData.name,
+            phone: userData.phone,
+            course: userData.course,
+            score: score
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).then(() => {
+            console.log('Data sent successfully to Google Sheets');
+        }).catch(err => console.error('Error sending data', err));
+    }
+</script>
+
+</body>
+</html>
