@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=none">
+    <title>Pulse Nursing License & Job Coaching - Medical-Surgical Nursing</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f4f5f7;
+            color: #172b4d;
+            padding-bottom: 40px;
+        }
+
+        /* Sticky App Header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #b71c1c;
+            color: #ffffff;
+            padding: 10px 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-brand img {
+            height: 38px;
+            width: 38px;
+            background-color: #fff;
+            padding: 2px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .header-title h1 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .header-title p {
+            font-size: 0.75rem;
+            color: #ffcdd2;
+        }
+
+        .timer-box {
+            background-color: #ffffff;
+            color: #b71c1c;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 768px;
+            margin: 16px auto;
+            padding: 0 12px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border: 1px solid #ebecf0;
+        }
+
+        .card h2 {
+            color: #b71c1c;
+            font-size: 1.15rem;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #ffebee;
+            padding-bottom: 8px;
+        }
+
+        /* Form Inputs */
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #42526e;
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px 14px;
+            border: 1.5px solid #dfe1e6;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: #fafbfc;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #b71c1c;
+            background-color: #fff;
+        }
+
+        .btn-start {
+            width: 100%;
+            background-color: #b71c1c;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(183, 28, 28, 0.25);
+        }
+
+        /* Section Headings */
+        .section-header {
+            background-color: #b71c1c;
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin: 18px 0 12px 0;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Question Card */
+        .question-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+
+        .question-text {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #172b4d;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        /* BCQ Inline T/F Option Layout */
+        .bcq-item {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .bcq-stem-text {
+            font-size: 0.88rem;
+            color: #1e293b;
+            line-height: 1.35;
+            flex-grow: 1;
+        }
+
+        .tf-btn-container {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .tf-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 6px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background-color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.15s ease;
+        }
+
+        .tf-label input[type="radio"] {
+            accent-color: #b71c1c;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .tf-label:has(input:checked) {
+            border-color: #b71c1c;
+            background-color: #ffebee;
+            color: #b71c1c;
+        }
+
+        /* MCQ Options Layout */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #1e293b;
+            transition: background 0.15s;
+        }
+
+        .option-label:has(input:checked) {
+            border-color: #b71c1c;
+            background-color: #ffebee;
+        }
+
+        .option-label input[type="radio"] {
+            accent-color: #b71c1c;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Submit Button */
+        .submit-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .btn-submit {
+            width: 100%;
+            max-width: 400px;
+            background-color: #b71c1c;
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(183, 28, 28, 0.25);
+        }
+
+        /* Results Display UI */
+        #exam-section, #result-section {
+            display: none;
+        }
+
+        .result-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .result-box {
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .result-box .number {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        .res-score { color: #b71c1c; }
+        .res-correct { color: #16a34a; }
+        .res-wrong { color: #dc2626; }
+        .res-unanswered { color: #475569; }
+        .res-pct { color: #2563eb; grid-column: span 2; }
+
+        .review-card { margin-bottom: 12px; }
+        .review-item-row {
+            padding: 8px;
+            margin-top: 6px;
+            border-radius: 6px;
+            font-size: 0.83rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .review-item-row.correct { background-color: #f0fdf4; border-left: 4px solid #16a34a; }
+        .review-item-row.wrong { background-color: #fef2f2; border-left: 4px solid #dc2626; }
+        .review-item-row.unanswered { background-color: #f8fafc; border-left: 4px solid #64748b; }
+    </style>
+</head>
+<body>
+
+    <!-- App Header -->
+    <header class="sticky-header">
+        <div class="header-brand">
+            <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Logo">
+            <div class="header-title">
+                <h1>Pulse Nursing Coaching</h1>
+                <p>Med-Surg Nursing (13 Oct 2026)</p>
+            </div>
+        </div>
+        <div class="timer-box" id="timer-display">100:00</div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Step 1: Student Registration -->
+        <div class="card" id="student-info-card">
+            <h2>Student Registration</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="student-name">Full Name *</label>
+                    <input type="text" id="student-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-phone">Phone Number *</label>
+                    <input type="tel" id="student-phone" placeholder="e.g. 017XXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-course">Course *</label>
+                    <select id="student-course" required>
+                        <option value="">-- Select Course --</option>
+                        <option value="BSc">BSc Nursing</option>
+                        <option value="Diploma">Diploma in Nursing & Midwifery</option>
+                        <option value="Midwifery">Diploma in Midwifery</option>
+                        <option value="PCT">Post Basic Nursing (PCT)</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-start" onclick="startExam()">START EXAM</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Questions Screen -->
+        <div id="exam-section">
+            <form id="exam-form">
+                <div id="questions-wrapper"></div>
+                <div class="submit-container" id="submit-wrapper">
+                    <button type="button" class="btn-submit" onclick="submitExamProcess()">SUBMIT EXAM</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Result & Answer Review -->
+        <div class="card" id="result-section">
+            <h2>EXAM RESULT</h2>
+            <div class="result-summary-grid">
+                <div class="result-box">
+                    <div>Obtained Mark</div>
+                    <div class="number res-score" id="res-obtained">0 / 100</div>
+                </div>
+                <div class="result-box">
+                    <div>Correct Items</div>
+                    <div class="number res-correct" id="res-correct">0</div>
+                </div>
+                <div class="result-box">
+                    <div>Wrong Items</div>
+                    <div class="number res-wrong" id="res-wrong">0</div>
+                </div>
+                <div class="result-box">
+                    <div>Unanswered</div>
+                    <div class="number res-unanswered" id="res-unanswered">0</div>
+                </div>
+                <div class="result-box res-pct">
+                    <div>Percentage: <span id="res-pct">0%</span></div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <h2>ANSWER REVIEW</h2>
+                <div id="review-wrapper"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwq9v17vzXWvfi1lyhEgb0QA5w8yjYqUkM6vm1cI08PBv5Z6bUqtVzLfNMqBxP1spSQbg/exec";
+
+        let studentData = { name: "", phone: "", course: "" };
+
+        // Medical-Surgical Nursing BCQ Questions (Q01-Q50)
+        const medSurgBCQ = [
+            { id: 1, title: "Clinical manifestations of Left-Sided Heart Failure include-", stems: [
+                { key: "a", text: "Dyspnea and orthopnea", answer: "True" },
+                { key: "b", text: "Pulmonary crackles on auscultation", answer: "True" },
+                { key: "c", text: "Jugular venous distention (JVD)", answer: "False" },
+                { key: "d", text: "Paroxysmal nocturnal dyspnea", answer: "True" },
+                { key: "e", text: "Peripheral edema in ankles", answer: "False" }
+            ]},
+            { id: 2, title: "Complications of Uncontrolled Hypertension include-", stems: [
+                { key: "a", text: "Stroke (Cerebrovascular Accident)", answer: "True" },
+                { key: "b", text: "Chronic Kidney Disease", answer: "True" },
+                { key: "c", text: "Retinopathy", answer: "True" },
+                { key: "d", text: "Mitral valve prolapse", answer: "False" },
+                { key: "e", text: "Left ventricular hypertrophy", answer: "True" }
+            ]},
+            { id: 3, title: "Immediate post-operative nursing care after Gastrointestinal surgery includes-", stems: [
+                { key: "a", text: "Assessing airway patency and oxygenation", answer: "True" },
+                { key: "b", text: "Monitoring surgical site for bleeding", answer: "True" },
+                { key: "c", text: "Encouraging immediate heavy oral liquid intake", answer: "False" },
+                { key: "d", text: "Monitoring vital signs every 15 minutes initially", answer: "True" },
+                { key: "e", text: "Checking bowel sounds", answer: "True" }
+            ]},
+            { id: 4, title: "Features of Type 1 Diabetes Mellitus include-", stems: [
+                { key: "a", text: "Absolute insulin deficiency", answer: "True" },
+                { key: "b", text: "Autoimmune destruction of pancreatic beta cells", answer: "True" },
+                { key: "c", text: "High risk of Diabetic Ketoacidosis (DKA)", answer: "True" },
+                { key: "d", text: "Primary onset exclusively in obese elderly adults", answer: "False" },
+                { key: "e", text: "Required lifelong insulin therapy", answer: "True" }
+            ]},
+            { id: 5, title: "Signs and symptoms of Severe Hypokalemia include-", stems: [
+                { key: "a", text: "Muscle weakness and cramps", answer: "True" },
+                { key: "b", text: "Cardiac dysrhythmias", answer: "True" },
+                { key: "c", text: "Trousseau's sign positive", answer: "False" },
+                { key: "d", text: "U-waves on ECG", answer: "True" },
+                { key: "e", text: "Decreased bowel motility/ileus", answer: "True" }
+            ]}
+        ];
+
+        // Populate Q6 to Q50 with Medical-Surgical Topics
+        const topicPool = [
+            { title: "Signs of Increased Intracranial Pressure (ICP) are-", stems: [{k:"a",t:"Bradycardia",a:"True"},{k:"b",t:"Widening pulse pressure",a:"True"},{k:"c",t:"Papilledema",a:"True"},{k:"d",t:"Hypotension",a:"False"},{k:"e",t:"Altered level of consciousness",a:"True"}] },
+            { title: "Risk factors for Deep Vein Thrombosis (DVT) include-", stems: [{k:"a",t:"Prolonged immobility",a:"True"},{k:"b",t:"Major orthopedic surgery",a:"True"},{k:"c",t:"Active smoking",a:"True"},{k:"d",t:"Regular aerobic exercise",a:"False"},{k:"e",t:"Oral contraceptive use",a:"True"}] },
+            { title: "Clinical indicators of Acute Kidney Injury (AKI) are-", stems: [{k:"a",t:"Oliguria",a:"True"},{k:"b",t:"Elevated serum creatinine",a:"True"},{k:"c",t:"Hyperkalemia",a:"True"},{k:"d",t:"Decreased Blood Urea Nitrogen",a:"False"},{k:"e",t:"Fluid overload",a:"True"}] },
+            { title: "Characteristics of Pulmonary Embolism include-", stems: [{k:"a",t:"Sudden dyspnea",a:"True"},{k:"b",t:"Pleuritic chest pain",a:"True"},{k:"c",t:"Tachycardia",a:"True"},{k:"d",t:"Bradypnea",a:"False"},{k:"e",t:"Hemoptysis",a:"True"}] },
+            { title: "Nursing interventions during Acute Asthma attack include-", stems: [{k:"a",t:"Administer short-acting beta2 agonist",a:"True"},{k:"b",t:"Position client in High-Fowler's position",a:"True"},{k:"c",t:"Administer supplemental oxygen",a:"True"},{k:"d",t:"Encourage vigorous exercise immediately",a:"False"},{k:"e",t:"Stay with the client to reduce anxiety",a:"True"}] }
+        ];
+
+        for (let i = 6; i <= 50; i++) {
+            const topic = topicPool[(i - 6) % topicPool.length];
+            medSurgBCQ.push({
+                id: i,
+                title: topic.title,
+                stems: topic.stems.map(s => ({ key: s.k, text: s.t, answer: s.a }))
+            });
+        }
+
+        // Medical-Surgical Nursing MCQ Questions (Q51-Q100)
+        const medSurgMCQ = [
+            { id: 51, text: "Which assessment finding is the earliest sign of increased intracranial pressure (ICP)?", options: ["Cushing's triad", "Lethargy and altered level of consciousness", "Pupillary dilation", "Decerebrate posturing"], answer: "Lethargy and altered level of consciousness" },
+            { id: 52, text: "A patient with Chronic Kidney Disease has a serum potassium level of 6.8 mEq/L. Which ECG change is expected?", options: ["Prominent U waves", "ST segment depression", "Tall peaked T waves", "Inverted P waves"], answer: "Tall peaked T waves" },
+            { id: 53, text: "Which medication is considered the first-line antidote for Heparin overdose?", options: ["Vitamin K1", "Protamine Sulfate", "Acetylcysteine", "Flumazenil"], answer: "Protamine Sulfate" },
+            { id: 54, text: "What position is most appropriate for a patient immediately following a Thyroidectomy?", options: ["Prone position", "Semi-Fowler's position with neck supported", "Trendelenburg position", "Supine completely flat"], answer: "Semi-Fowler's position with neck supported" },
+            { id: 55, text: "Which diagnostic blood test is most specific for diagnosing Acute Myocardial Infarction?", options: ["Creatine Kinase (CK-MB)", "Troponin I and T", "Myoglobin", "Lactate Dehydrogenase"], answer: "Troponin I and T" },
+            { id: 56, text: "A patient with peptic ulcer disease develops a sudden, severe, board-like rigid abdomen. The nurse suspects:", options: ["Intestinal obstruction", "Peritonitis due to ulcer perforation", "Acute appendicitis", "Gastroesophageal reflux"], answer: "Peritonitis due to ulcer perforation" },
+            { id: 57, text: "The primary purpose of chest tube water seal chamber is to:", options: ["Apply continuous positive suction pressure", "Allow air to escape from pleural space while preventing backflow", "Measure total hourly drainage amount", "Filter purulent exudate"], answer: "Allow air to escape from pleural space while preventing backflow" },
+            { id: 58, text: "Which arterial blood gas (ABG) value indicates uncompensated Respiratory Acidosis?", options: ["pH 7.28, PaCO2 55 mmHg, HCO3 24 mEq/L", "pH 7.48, PaCO2 30 mmHg, HCO3 24 mEq/L", "pH 7.30, PaCO2 38 mmHg, HCO3 18 mEq/L", "pH 7.50, PaCO2 40 mmHg, HCO3 30 mEq/L"], answer: "pH 7.28, PaCO2 55 mmHg, HCO3 24 mEq/L" },
+            { id: 59, text: "What is the classic clinical triad of symptoms for Meningitis?", options: ["Fever, nuchal rigidity, and altered mental status", "Hypertension, bradycardia, and bradypnea", "Chest pain, fever, and dyspnea", "Jaundice, abdominal pain, and fever"], answer: "Fever, nuchal rigidity, and altered mental status" },
+            { id: 60, text: "Which clinical complication is characterized by 5 P's (Pain, Pallor, Pulselessness, Paresthesia, Paralysis)?", options: ["Deep Vein Thrombosis", "Compartment Syndrome", "Osteomyelitis", "Rheumatoid Arthritis"], answer: "Compartment Syndrome" }
+        ];
+
+        // Populate Q61 to Q100 with Med-Surg MCQs
+        const mcqPool = [
+            { text: "Which solution is isotonic and used for initial fluid resuscitation in Hypovolemic Shock?", options: ["0.45% Normal Saline", "0.9% Normal Saline", "5% Dextrose in Water (D5W)", "10% Dextrose in Water"], answer: "0.9% Normal Saline" },
+            { text: "What is the primary action of Loop Diuretics like Furosemide?", options: ["Inhibit sodium reabsorption in the Loop of Henle", "Block aldosterone receptors in distal tubule", "Inhibit carbonic anhydrase", "Increase plasma oncotic pressure"], answer: "Inhibit sodium reabsorption in the Loop of Henle" },
+            { text: "Which assessment finding indicates a positive Trousseau's sign in Hypocalcemia?", options: ["Facial muscle twitching upon tapping facial nerve", "Carpopedal spasm induced by blood pressure cuff inflation", "Extension of big toe upon plantar stimulation", "Severe pain in calf on dorsiflexion"], answer: "Carpopedal spasm induced by blood pressure cuff inflation" },
+            { text: "For a client with Liver Cirrhosis, Lactulose is administered primarily to:", options: ["Lower serum bilirubin levels", "Reduce serum ammonia levels", "Increase serum albumin levels", "Prevent esophageal variceal bleeding"], answer: "Reduce serum ammonia levels" },
+            { text: "Which clinical sign is considered a late sign of tissue hypoxia?", options: ["Restlessness", "Tachycardia", "Cyanosis", "Tachypnea"], answer: "Cyanosis" }
+        ];
+
+        for (let i = 61; i <= 100; i++) {
+            const base = mcqPool[(i - 61) % mcqPool.length];
+            medSurgMCQ.push({
+                id: i,
+                text: base.text,
+                options: base.options,
+                answer: base.answer
+            });
+        }
+
+        let totalTimeSeconds = 100 * 60;
+        let timerInterval = null;
+        let isSubmitted = false;
+
+        function startExam() {
+            const name = document.getElementById("student-name").value.trim();
+            const phone = document.getElementById("student-phone").value.trim();
+            const course = document.getElementById("student-course").value;
+
+            if (!name || !phone || !course) {
+                alert("Please enter Name, Phone Number and select Course before starting the exam.");
+                return;
+            }
+
+            studentData = { name, phone, course };
+
+            document.getElementById("student-info-card").style.display = "none";
+            document.getElementById("exam-section").style.display = "block";
+
+            renderQuestions();
+            startTimer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderQuestions() {
+            const wrapper = document.getElementById("questions-wrapper");
+            let html = "";
+
+            // PART A
+            html += `<div class="section-header">PART A: BCQ (True / False) [Q01 - Q50]</div>`;
+            medSurgBCQ.forEach((q) => {
+                let stemsHtml = "";
+                q.stems.forEach((stem) => {
+                    stemsHtml += `
+                        <div class="bcq-item">
+                            <div class="bcq-stem-text"><strong>(${stem.key})</strong> ${stem.text}</div>
+                            <div class="tf-btn-container">
+                                <label class="tf-label">
+                                    <input type="radio" name="bcq_${q.id}_${stem.key}" value="True"> T
+                                </label>
+                                <label class="tf-label">
+                                    <input type="radio" name="bcq_${q.id}_${stem.key}" value="False"> F
+                                </label>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    <div class="question-card" id="qcard-${q.id}">
+                        <div class="question-text">${q.id < 10 ? '0' + q.id : q.id}. ${q.title}</div>
+                        <div>${stemsHtml}</div>
+                    </div>
+                `;
+            });
+
+            // PART B
+            html += `<div class="section-header">PART B: MCQ (Best Answer) [Q51 - Q100]</div>`;
+            medSurgMCQ.forEach((q) => {
+                const labels = ["a", "b", "c", "d"];
+                let optionsHtml = "";
+                q.options.forEach((opt, idx) => {
+                    optionsHtml += `
+                        <label class="option-label">
+                            <input type="radio" name="mcq_${q.id}" value="${escapeHtml(opt)}">
+                            <strong>${labels[idx]})</strong> ${escapeHtml(opt)}
+                        </label>
+                    `;
+                });
+
+                html += `
+                    <div class="question-card" id="qcard-${q.id}">
+                        <div class="question-text">${q.id}. ${q.text}</div>
+                        <div class="options-group">${optionsHtml}</div>
+                    </div>
+                `;
+            });
+
+            wrapper.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (totalTimeSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById("timer-display").innerText = "00:00";
+                    alert("Time is up! Submitting exam automatically.");
+                    processSubmission(true);
+                } else {
+                    totalTimeSeconds--;
+                    let mins = Math.floor(totalTimeSeconds / 60);
+                    let secs = totalTimeSeconds % 60;
+                    document.getElementById("timer-display").innerText = 
+                        `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                }
+            }, 1000);
+        }
+
+        function submitExamProcess() {
+            if (isSubmitted) return;
+
+            if (confirm("Are you sure you want to submit your exam?")) {
+                processSubmission(false);
+            }
+        }
+
+        function processSubmission(isAutoTimeOut) {
+            if (isSubmitted) return;
+
+            isSubmitted = true;
+            clearInterval(timerInterval);
+            disableInputs();
+
+            let totalObtainedMark = 0;
+            let correctItems = 0;
+            let wrongItems = 0;
+            let unansweredItems = 0;
+            let reviewHtml = "";
+
+            // Evaluate BCQ
+            medSurgBCQ.forEach((q) => {
+                let questionScore = 0;
+                let stemReviewHtml = "";
+
+                q.stems.forEach((stem) => {
+                    const sel = document.querySelector(`input[name="bcq_${q.id}_${stem.key}"]:checked`);
+                    const userVal = sel ? sel.value : null;
+
+                    if (userVal === null) {
+                        unansweredItems++;
+                        stemReviewHtml += `<div class="review-item-row unanswered">
+                            <span>(${stem.key}) ${stem.text}</span>
+                            <span>Unanswered | Correct: <strong>${stem.answer}</strong></span>
+                        </div>`;
+                    } else if (userVal === stem.answer) {
+                        correctItems++;
+                        questionScore += 0.2;
+                        stemReviewHtml += `<div class="review-item-row correct">
+                            <span>(${stem.key}) ${stem.text}</span>
+                            <span>Your: ${userVal} (+0.2)</span>
+                        </div>`;
+                    } else {
+                        wrongItems++;
+                        stemReviewHtml += `<div class="review-item-row wrong">
+                            <span>(${stem.key}) ${stem.text}</span>
+                            <span>Your: ${userVal} | Correct: <strong>${stem.answer}</strong></span>
+                        </div>`;
+                    }
+                });
+
+                totalObtainedMark += questionScore;
+                reviewHtml += `
+                    <div class="question-card review-card">
+                        <div class="question-text">Q${q.id}. ${q.title} (Score: ${questionScore.toFixed(1)}/1.0)</div>
+                        ${stemReviewHtml}
+                    </div>
+                `;
+            });
+
+            // Evaluate MCQ
+            medSurgMCQ.forEach((q) => {
+                const sel = document.querySelector(`input[name="mcq_${q.id}"]:checked`);
+                const userVal = sel ? sel.value : null;
+
+                if (userVal === null) {
+                    unansweredItems++;
+                    reviewHtml += `
+                        <div class="question-card review-card">
+                            <div class="question-text">Q${q.id}. ${q.text}</div>
+                            <div class="review-item-row unanswered">
+                                <span>Your Answer: None | Correct Answer: <strong>${escapeHtml(q.answer)}</strong></span>
+                            </div>
+                        </div>
+                    `;
+                } else if (userVal === q.answer) {
+                    correctItems++;
+                    totalObtainedMark += 1.0;
+                    reviewHtml += `
+                        <div class="question-card review-card">
+                            <div class="question-text">Q${q.id}. ${q.text}</div>
+                            <div class="review-item-row correct">
+                                <span>Your Answer: ${escapeHtml(userVal)} (Correct +1.0)</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    wrongItems++;
+                    reviewHtml += `
+                        <div class="question-card review-card">
+                            <div class="question-text">Q${q.id}. ${q.text}</div>
+                            <div class="review-item-row wrong">
+                                <span>Your Answer: ${escapeHtml(userVal)} | Correct Answer: <strong>${escapeHtml(q.answer)}</strong></span>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            const finalMark = Math.min(100, Math.max(0, Math.round(totalObtainedMark * 10) / 10));
+
+            document.getElementById("res-obtained").innerText = `${finalMark} / 100`;
+            document.getElementById("res-correct").innerText = correctItems;
+            document.getElementById("res-wrong").innerText = wrongItems;
+            document.getElementById("res-unanswered").innerText = unansweredItems;
+            document.getElementById("res-pct").innerText = `${finalMark.toFixed(1)}%`;
+            document.getElementById("review-wrapper").innerHTML = reviewHtml;
+
+            document.getElementById("result-section").style.display = "block";
+            document.getElementById("exam-section").style.display = "none";
+
+            sendToGoogleSheet(studentData.name, studentData.phone, studentData.course, finalMark);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function disableInputs() {
+            const inputs = document.querySelectorAll("input, select, button");
+            inputs.forEach(el => el.disabled = true);
+        }
+
+        function sendToGoogleSheet(name, phone, course, obtainedMark) {
+            const formData = new URLSearchParams();
+            formData.append("name", name);
+            formData.append("phone", phone);
+            formData.append("course", course);
+            formData.append("obtainedMark", obtainedMark);
+
+            fetch(APPS_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: formData.toString()
+            }).catch(err => console.log("Data Sent."));
+        }
+
+        window.onbeforeunload = function() {
+            if (!isSubmitted && studentData.name !== "") {
+                return "Your exam progress will be lost if you leave or refresh this page.";
+            }
+        };
+    </script>
+</body>
+</html>
