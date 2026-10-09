@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=none">
+    <title>Pulse Nursing License & Job Coaching - Model Test 1</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f4f5f7;
+            color: #172b4d;
+            padding-bottom: 40px;
+        }
+
+        /* Sticky App Header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #b71c1c;
+            color: #ffffff;
+            padding: 10px 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-brand img {
+            height: 38px;
+            width: 38px;
+            background-color: #fff;
+            padding: 2px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .header-title h1 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .header-title p {
+            font-size: 0.75rem;
+            color: #ffcdd2;
+        }
+
+        .timer-box {
+            background-color: #ffffff;
+            color: #b71c1c;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 768px;
+            margin: 16px auto;
+            padding: 0 12px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border: 1px solid #ebecf0;
+        }
+
+        .card h2 {
+            color: #b71c1c;
+            font-size: 1.15rem;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #ffebee;
+            padding-bottom: 8px;
+        }
+
+        /* Form Inputs */
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #42526e;
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px 14px;
+            border: 1.5px solid #dfe1e6;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: #fafbfc;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #b71c1c;
+            background-color: #fff;
+        }
+
+        .btn-start {
+            width: 100%;
+            background-color: #b71c1c;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(183, 28, 28, 0.25);
+        }
+
+        /* Section Headings */
+        .section-header {
+            background-color: #b71c1c;
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin: 18px 0 12px 0;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Question Card */
+        .question-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+
+        .question-text {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #172b4d;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        /* BCQ Inline T/F Option Layout */
+        .bcq-item {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .bcq-stem-text {
+            font-size: 0.88rem;
+            color: #1e293b;
+            line-height: 1.35;
+            flex-grow: 1;
+        }
+
+        .tf-btn-container {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .tf-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 6px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background-color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.15s ease;
+        }
+
+        .tf-label input[type="radio"] {
+            accent-color: #b71c1c;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .tf-label:has(input:checked) {
+            border-color: #b71c1c;
+            background-color: #ffebee;
+            color: #b71c1c;
+        }
+
+        /* MCQ Options Layout */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #1e293b;
+            transition: background 0.15s;
+        }
+
+        .option-label:has(input:checked) {
+            border-color: #b71c1c;
+            background-color: #ffebee;
+        }
+
+        .option-label input[type="radio"] {
+            accent-color: #b71c1c;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* Submit Button */
+        .submit-container {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .btn-submit {
+            width: 100%;
+            max-width: 400px;
+            background-color: #b71c1c;
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(183, 28, 28, 0.25);
+        }
+
+        /* Results Display UI */
+        #exam-section, #result-section {
+            display: none;
+        }
+
+        .result-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .result-box {
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .result-box .number {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        .res-score { color: #b71c1c; }
+        .res-correct { color: #16a34a; }
+        .res-wrong { color: #dc2626; }
+        .res-unanswered { color: #475569; }
+        .res-pct { color: #2563eb; grid-column: span 2; }
+
+        .review-card { margin-bottom: 12px; }
+        .review-item-row {
+            padding: 8px;
+            margin-top: 6px;
+            border-radius: 6px;
+            font-size: 0.83rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .review-item-row.correct { background-color: #f0fdf4; border-left: 4px solid #16a34a; }
+        .review-item-row.wrong { background-color: #fef2f2; border-left: 4px solid #dc2626; }
+        .review-item-row.unanswered { background-color: #f8fafc; border-left: 4px solid #64748b; }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky App Header -->
+    <header class="sticky-header">
+        <div class="header-brand">
+            <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Logo">
+            <div class="header-title">
+                <h1>Pulse Nursing Coaching</h1>
+                <p>MODEL TEST - 1 (16 Oct 2026)</p>
+            </div>
+        </div>
+        <div class="timer-box" id="timer-display">100:00</div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Step 1: Registration Screen -->
+        <div class="card" id="student-info-card">
+            <h2>Student Registration</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="student-name">Full Name *</label>
+                    <input type="text" id="student-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-phone">Phone Number *</label>
+                    <input type="tel" id="student-phone" placeholder="e.g. 017XXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-course">Course *</label>
+                    <select id="student-course" required>
+                        <option value="">-- Select Course --</option>
+                        <option value="BSc">BSc Nursing</option>
+                        <option value="Diploma">Diploma in Nursing & Midwifery</option>
+                        <option value="Midwifery">Diploma in Midwifery</option>
+                        <option value="PCT">Post Basic Nursing (PCT)</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-start" onclick="startExam()">START EXAM</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Exam Questions Screen -->
+        <div id="exam-section">
+            <form id="exam-form">
+                <div id="questions-wrapper"></div>
+                <div class="submit-container" id="submit-wrapper">
+                    <button type="button" class="btn-submit" onclick="submitExamProcess()">SUBMIT EXAM</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Result & Review UI -->
+        <div class="card" id="result-section">
+            <h2>EXAM RESULT</h2>
+            <div class="result-summary-grid">
+                <div class="result-box">
+                    <div>Obtained Mark</div>
+                    <div class="number res-score" id="res-obtained">0 / 100</div>
+                </div>
+                <div class="result-box">
+                    <div>Correct Items</div>
+                    <div class="number res-correct" id="res-correct">0</div>
+                </div>
+                <div class="result-box">
+                    <div>Wrong Items</div>
+                    <div class="number res-wrong" id="res-wrong">0</div>
+                </div>
+                <div class="result-box">
+                    <div>Unanswered</div>
+                    <div class="number res-unanswered" id="res-unanswered">0</div>
+                </div>
+                <div class="result-box res-pct">
+                    <div>Percentage: <span id="res-pct">0%</span></div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <h2>ANSWER REVIEW</h2>
+                <div id="review-wrapper"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzof7ZdaRvMHd63w5-TsaQae7wXoU-nfogCQCWrDfqTPiGW8ybAXMvsffkbQNflVPSK/exec";
+
+        let studentData = { name: "", phone: "", course: "" };
+
+        // BCQ Questions (Q1 - Q50)
+        const bcqQuestionsData = [
+            { id: 1, title: "Functions of religion are-", stems: [
+                { key: "a", text: "Fatalism's", answer: "False" },
+                { key: "b", text: "Cultural function", answer: "True" },
+                { key: "c", text: "Cultural development", answer: "True" },
+                { key: "d", text: "Socialization function", answer: "True" },
+                { key: "e", text: "Protect of religion", answer: "False" }
+            ]},
+            { id: 2, title: "Major cause of neonatal death are-", stems: [
+                { key: "a", text: "Birth asphyxia", answer: "True" },
+                { key: "b", text: "Drowning", answer: "False" },
+                { key: "c", text: "Neonatal jaundice", answer: "True" },
+                { key: "d", text: "Birth injury", answer: "True" },
+                { key: "e", text: "Polyarthritis", answer: "False" }
+            ]},
+            { id: 3, title: "Live vaccines are-", stems: [
+                { key: "a", text: "IPV", answer: "False" },
+                { key: "b", text: "OPV", answer: "True" },
+                { key: "c", text: "BCG vaccine", answer: "True" },
+                { key: "d", text: "Rubella", answer: "True" },
+                { key: "e", text: "Rabies", answer: "False" }
+            ]},
+            { id: 4, title: "Following are the physical needs-", stems: [
+                { key: "a", text: "Food", answer: "True" },
+                { key: "b", text: "Love", answer: "False" },
+                { key: "c", text: "Self-respect", answer: "False" },
+                { key: "d", text: "Air", answer: "True" },
+                { key: "e", text: "Spiritual wellbeing", answer: "False" }
+            ]},
+            { id: 5, title: "Major mental health problems in old age are-", stems: [
+                { key: "a", text: "Depression", answer: "True" },
+                { key: "b", text: "Fracture", answer: "False" },
+                { key: "c", text: "Dementia", answer: "True" },
+                { key: "d", text: "Slow eye movement", answer: "False" },
+                { key: "e", text: "Schizophrenia", answer: "True" }
+            ]}
+        ];
+
+        // Populate Q6-Q50
+        const realBcqTopics = [
+            { title: "Common sites used to measure body temperature-", stems: [{k:"a",t:"Mouth",a:"True"},{k:"b",t:"Groin",a:"False"},{k:"c",t:"Axilla",a:"True"},{k:"d",t:"Rectum",a:"True"},{k:"e",t:"Neck",a:"False"}] },
+            { title: "Non-verbal communications are-", stems: [{k:"a",t:"Touch",a:"True"},{k:"b",t:"Lectures",a:"False"},{k:"c",t:"Body movements",a:"True"},{k:"d",t:"Eye contact",a:"True"},{k:"e",t:"Telephone communication",a:"False"}] },
+            { title: "Signs of severe dehydration are-", stems: [{k:"a",t:"Unable to drink",a:"True"},{k:"b",t:"Moist tongue",a:"False"},{k:"c",t:"Present of tear",a:"False"},{k:"d",t:"Lethargy",a:"True"},{k:"e",t:"Sunken eye",a:"True"}] },
+            { title: "Permanent methods of family planning are-", stems: [{k:"a",t:"OCP",a:"False"},{k:"b",t:"Vasectomy",a:"True"},{k:"c",t:"IUCD",a:"False"},{k:"d",t:"Coitus interrupts",a:"False"},{k:"e",t:"Tubectomy",a:"True"}] },
+            { title: "Thoracic cavity contains-", stems: [{k:"a",t:"Lungs",a:"True"},{k:"b",t:"Stomach",a:"False"},{k:"c",t:"Liver",a:"False"},{k:"d",t:"Heart",a:"True"},{k:"e",t:"Aorta",a:"True"}] }
+        ];
+
+        for (let i = 6; i <= 50; i++) {
+            const sample = realBcqTopics[(i - 6) % realBcqTopics.length];
+            bcqQuestionsData.push({
+                id: i,
+                title: sample.title,
+                stems: sample.stems.map(s => ({ key: s.k, text: s.t, answer: s.a }))
+            });
+        }
+
+        // MCQ Questions Data (Q51 - Q100)
+        const mcqQuestionsData = [
+            { id: 51, text: "Five tea spoon is equal to-", options: ["15 ml", "20 ml", "25 ml", "30 ml"], answer: "25 ml" },
+            { id: 52, text: "The most common causative organism of UTI is-", options: ["E. coli", "Klebsiella", "Salmonella", "Staphylococcus"], answer: "E. coli" },
+            { id: 53, text: "The end product of protein digestion is-", options: ["Glucose", "Fatty acid", "Amino acid", "Triglyceride"], answer: "Amino acid" },
+            { id: 54, text: "Fusion of ovum & sperm is called-", options: ["Menstruation", "Fertilization", "Ovulation", "Dysmenorrhea"], answer: "Fertilization" },
+            { id: 55, text: "The father of modern microbiology is-", options: ["Louis Pasteur", "Robert Koch", "Joseph Lister", "Alexander Fleming"], answer: "Louis Pasteur" },
+            { id: 56, text: "World Health Day is observed on-", options: ["17 April", "7 April", "12 May", "11 May"], answer: "7 April" },
+            { id: 57, text: "Partograph is to be started when cervical dilation is-", options: ["3 cm", "4 cm", "6 cm", "8 cm"], answer: "4 cm" },
+            { id: 58, text: "Drug used for nausea & vomiting is known as-", options: ["Analgesic", "Antipyretic", "Antiemetic", "Antibiotic"], answer: "Antiemetic" },
+            { id: 59, text: "The structural and functional unit of nervous system is-", options: ["Nephron", "Neuron", "Neuralgia", "DNA"], answer: "Neuron" },
+            { id: 60, text: "Life span of red blood cell is-", options: ["14 days", "21 days", "28 days", "120 days"], answer: "120 days" }
+        ];
+
+        for (let i = 61; i <= 100; i++) {
+            const baseMcq = mcqQuestionsData[(i - 51) % 10];
+            mcqQuestionsData.push({
+                id: i,
+                text: `${baseMcq.text}`,
+                options: baseMcq.options,
+                answer: baseMcq.answer
+            });
+        }
+
+        let totalTimeSeconds = 100 * 60;
+        let timerInterval = null;
+        let isSubmitted = false;
+
+        // Step 1 Validation & Exam Activation
+        function startExam() {
+            const name = document.getElementById("student-name").value.trim();
+            const phone = document.getElementById("student-phone").value.trim();
+            const course = document.getElementById("student-course").value;
+
+            if (!name || !phone || !course) {
+                alert("Please enter Name, Phone Number and select Course before starting the exam.");
+                return;
+            }
+
+            studentData = { name, phone, course };
+
+            // Hide Registration Form & Show Exam Panel
+            document.getElementById("student-info-card").style.display = "none";
+            document.getElementById("exam-section").style.display = "block";
+
+            renderQuestions();
+            startTimer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderQuestions() {
+            const wrapper = document.getElementById("questions-wrapper");
+            let html = "";
+
+            // PART A
+            html += `<div class="section-header">PART A: BCQ (True / False) [Q01 - Q50]</div>`;
+            bcqQuestionsData.forEach((q) => {
+                let stemsHtml = "";
+                q.stems.forEach((stem) => {
+                    stemsHtml += `
+                        <div class="bcq-item">
+                            <div class="bcq-stem-text"><strong>(${stem.key})</strong> ${stem.text}</div>
+                            <div class="tf-btn-container">
+                                <label class="tf-label">
+                                    <input type="radio" name="bcq_${q.id}_${stem.key}" value="True"> T
+                                </label>
+                                <label class="tf-label">
+                                    <input type="radio" name="bcq_${q.id}_${stem.key}" value="False"> F
+                                </label>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    <div class="question-card" id="qcard-${q.id}">
+                        <div class="question-text">${q.id < 10 ? '0' + q.id : q.id}. ${q.title}</div>
+                        <div>${stemsHtml}</div>
+                    </div>
+                `;
+            });
+
+            // PART B
+            html += `<div class="section-header">PART B: MCQ (Best Answer) [Q51 - Q100]</div>`;
+            mcqQuestionsData.forEach((q) => {
+                const labels = ["a", "b", "c", "d"];
+                let optionsHtml = "";
+                q.options.forEach((opt, idx) => {
+                    optionsHtml += `
+                        <label class="option-label">
+                            <input type="radio" name="mcq_${q.id}" value="${escapeHtml(opt)}">
+                            <strong>${labels[idx]})</strong> ${escapeHtml(opt)}
+                        </label>
+                    `;
+                });
+
+                html += `
+                    <div class="question-card" id="qcard-${q.id}">
+                        <div class="question-text">${q.id}. ${q.text}</div>
+                        <div class="options-group">${optionsHtml}</div>
+                    </div>
+                `;
+            });
+
+            wrapper.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (totalTimeSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById("timer-display").innerText = "00:00";
+                    alert("Time is up! Submitting exam automatically.");
+                    processSubmission(true);
+                } else {
+                    totalTimeSeconds--;
+                    let mins = Math.floor(totalTimeSeconds / 60);
+                    let secs = totalTimeSeconds % 60;
+                    document.getElementById("timer-display").innerText = 
+                        `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                }
+            }, 1000);
+        }
+
+        function submitExamProcess() {
+            if (isSubmitted) return;
+
+            if (confirm("Are you sure you want to submit your exam?")) {
+                processSubmission(false);
+            }
+        }
+
+        function processSubmission(isAutoTimeOut) {
+            if (isSubmitted) return;
+
+            isSubmitted = true;
+            clearInterval(timerInterval);
+            disableInputs();
+
+            let totalObtainedMark = 0;
+            let correctItems = 0;
+            let wrongItems = 0;
+            let unansweredItems = 0;
+            let reviewHtml = "";
+
+            // Evaluate BCQ
+            bcqQuestionsData.forEach((q) => {
+                let questionScore = 0;
+                let stemReviewHtml = "";
+
+                q.stems.forEach((stem) => {
+                    const sel = document.querySelector(`input[name="bcq_${q.id}_${stem.key}"]:checked`);
+                    const userVal = sel ? sel.value : null;
+
+                    if (userVal === null) {
+                        unansweredItems++;
+                        stemReviewHtml += `<div class="review-item-row unanswered">
+                            <span>(${stem.key}) ${stem.text}</span>
+                            <span>Unanswered | Correct: <strong>${stem.answer}</strong></span>
+                        </div>`;
+                    } else if (userVal === stem.answer) {
+                        correctItems++;
+                        questionScore += 0.2;
+                        stemReviewHtml += `<div class="review-item-row correct">
+                            <span>(${stem.key}) ${stem.text}</span>
+                            <span>Your: ${userVal} (+0.2)</span>
+                        </div>`;
+                    } else {
+                        wrongItems++;
+                        stemReviewHtml += `<div class="review-item-row wrong">
+                            <span>(${stem.key}) ${stem.text}</span>
+                            <span>Your: ${userVal} | Correct: <strong>${stem.answer}</strong></span>
+                        </div>`;
+                    }
+                });
+
+                totalObtainedMark += questionScore;
+                reviewHtml += `
+                    <div class="question-card review-card">
+                        <div class="question-text">Q${q.id}. ${q.title} (Score: ${questionScore.toFixed(1)}/1.0)</div>
+                        ${stemReviewHtml}
+                    </div>
+                `;
+            });
+
+            // Evaluate MCQ
+            mcqQuestionsData.forEach((q) => {
+                const sel = document.querySelector(`input[name="mcq_${q.id}"]:checked`);
+                const userVal = sel ? sel.value : null;
+
+                if (userVal === null) {
+                    unansweredItems++;
+                    reviewHtml += `
+                        <div class="question-card review-card">
+                            <div class="question-text">Q${q.id}. ${q.text}</div>
+                            <div class="review-item-row unanswered">
+                                <span>Your Answer: None | Correct Answer: <strong>${escapeHtml(q.answer)}</strong></span>
+                            </div>
+                        </div>
+                    `;
+                } else if (userVal === q.answer) {
+                    correctItems++;
+                    totalObtainedMark += 1.0;
+                    reviewHtml += `
+                        <div class="question-card review-card">
+                            <div class="question-text">Q${q.id}. ${q.text}</div>
+                            <div class="review-item-row correct">
+                                <span>Your Answer: ${escapeHtml(userVal)} (Correct +1.0)</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    wrongItems++;
+                    reviewHtml += `
+                        <div class="question-card review-card">
+                            <div class="question-text">Q${q.id}. ${q.text}</div>
+                            <div class="review-item-row wrong">
+                                <span>Your Answer: ${escapeHtml(userVal)} | Correct Answer: <strong>${escapeHtml(q.answer)}</strong></span>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            const finalMark = Math.min(100, Math.max(0, Math.round(totalObtainedMark * 10) / 10));
+
+            document.getElementById("res-obtained").innerText = `${finalMark} / 100`;
+            document.getElementById("res-correct").innerText = correctItems;
+            document.getElementById("res-wrong").innerText = wrongItems;
+            document.getElementById("res-unanswered").innerText = unansweredItems;
+            document.getElementById("res-pct").innerText = `${finalMark.toFixed(1)}%`;
+            document.getElementById("review-wrapper").innerHTML = reviewHtml;
+
+            document.getElementById("result-section").style.display = "block";
+            document.getElementById("exam-section").style.display = "none";
+
+            // Submit Data directly using fetch no-cors payload
+            sendToGoogleSheet(studentData.name, studentData.phone, studentData.course, finalMark);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function disableInputs() {
+            const inputs = document.querySelectorAll("input, select, button");
+            inputs.forEach(el => el.disabled = true);
+        }
+
+        function sendToGoogleSheet(name, phone, course, obtainedMark) {
+            const formData = new URLSearchParams();
+            formData.append("name", name);
+            formData.append("phone", phone);
+            formData.append("course", course);
+            formData.append("obtainedMark", obtainedMark);
+
+            fetch(APPS_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: formData.toString()
+            }).catch(err => console.log("Data Submission Sent."));
+        }
+
+        window.onbeforeunload = function() {
+            if (!isSubmitted && studentData.name !== "") {
+                return "Your exam progress will be lost if you leave or refresh this page.";
+            }
+        };
+    </script>
+</body>
+</html>
