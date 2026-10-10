@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse Nursing Coaching - Nursing License Examination</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fef2f2',
+              100: '#fee2e2',
+              500: '#ef4444',
+              600: '#dc2626',
+              700: '#b91c1c',
+              800: '#991b1b',
+              900: '#7f1d1d'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .unselectable {
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #dc2626;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+  <header class="bg-gradient-to-r from-brand-800 via-brand-700 to-brand-900 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 py-2.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Pulse Nursing Logo" class="h-10 w-10 object-contain bg-white rounded-full p-0.5 shadow-inner" onerror="this.src='https://placehold.co/100x100/dc2626/ffffff?text=PNC'">
+        <div>
+          <h1 class="text-base font-bold leading-tight tracking-wide">Pulse Nursing Coaching</h1>
+          <p class="text-[11px] text-brand-100 font-medium">Nursing Licensing Model Exam</p>
+        </div>
+      </div>
+
+      <!-- Header Timer Widget (Visible during exam) -->
+      <div id="headerTimerWidget" class="hidden flex items-center space-x-3">
+        <div class="bg-brand-900/90 border border-brand-500/50 px-3 py-1 rounded-lg text-center shadow-inner">
+          <span class="text-[10px] text-brand-200 uppercase font-semibold block leading-none mb-0.5">Time Left</span>
+          <span id="timerDisplay" class="text-base font-mono font-bold text-amber-300">40:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-3 py-4 md:py-6">
+
+    <section id="dashboardSection" class="space-y-6">
+      
+      <!-- Exam Info Hero Card -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200/80 p-5 md:p-6 text-center relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-50 rounded-full blur-2xl pointer-events-none"></div>
+        <img src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Pulse Nursing Logo" class="h-20 w-20 object-contain mx-auto mb-3 drop-shadow" onerror="this.src='https://placehold.co/120x120/dc2626/ffffff?text=PNC'">
+        
+        <h2 class="text-2xl font-black text-slate-800 tracking-tight">BNMC License Preparation Mock Test</h2>
+        <p class="text-xs md:text-sm text-slate-600 mt-1 max-w-xl mx-auto">
+           Test your readiness with 50 standard English multiple-choice questions designed strictly according to the Bangladesh Nursing and Midwifery Council exam syllabus.
+        </p>
+
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold">
+          <span class="bg-brand-50 text-brand-700 px-3 py-1.5 rounded-full border border-brand-200/60 flex items-center gap-1.5">
+            <i class="fa-solid fa-calendar-day text-brand-600"></i> Date: October 10, 2026
+          </span>
+          <span class="bg-amber-50 text-amber-800 px-3 py-1.5 rounded-full border border-amber-200/60 flex items-center gap-1.5">
+            <i class="fa-solid fa-clock text-amber-600"></i> Duration: 40 Minutes
+          </span>
+          <span class="bg-emerald-50 text-emerald-800 px-3 py-1.5 rounded-full border border-emerald-200/60 flex items-center gap-1.5">
+            <i class="fa-solid fa-list-check text-emerald-600"></i> 50 Questions (50 Marks)
+          </span>
+        </div>
+
+        <button onclick="scrollToRegistration()" class="mt-6 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-brand-500/25 transition duration-200 text-sm md:text-base inline-flex items-center gap-2">
+          <i class="fa-solid fa-pen-to-square"></i> Enter Examination
+        </button>
+      </div>
+
+      <div id="registrationCard" class="bg-white rounded-2xl shadow-md p-5 md:p-7 border border-slate-200 scroll-mt-20">
+        <div class="flex items-center space-x-3 mb-5 border-b border-slate-100 pb-4">
+          <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-lg font-bold">
+            <i class="fa-solid fa-user-pen"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-800">Candidate Registration</h3>
+            <p class="text-xs text-slate-500">Please provide your details before entering the exam paper.</p>
+          </div>
+        </div>
+
+        <form id="regForm" onsubmit="startExam(event)" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Full Name -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Name (নাম) <span class="text-brand-600">*</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-user absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                <input type="text" id="candidateName" required placeholder="Enter full name" class="w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 focus:outline-none transition">
+              </div>
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Phone Number (ফোন নম্বর) <span class="text-brand-600">*</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-phone absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                <input type="tel" id="candidatePhone" pattern="[0-9]{11}" required placeholder="017XXXXXXXX" class="w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 focus:outline-none transition">
+              </div>
+            </div>
+
+            <!-- Course Selection -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Course (কোর্স) <span class="text-brand-600">*</span>
+              </label>
+              <div class="relative">
+                <i class="fa-solid fa-graduation-cap absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                <select id="candidateCourse" required class="w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 focus:outline-none transition appearance-none">
+                  <option value="" disabled selected>Select category</option>
+                  <option value="BSC">BSC IN NURSING</option>
+                  <option value="DIPLOMA">DIPLOMA IN NURSING SCIENCE</option>
+                  <option value="MIDWIFERY">DIPLOMA IN MIDWIFERY</option>
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-3.5 top-3.5 text-slate-400 text-xs pointer-events-none"></i>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition duration-200 text-base flex items-center justify-center gap-2 mt-2">
+            <span>Start Test Now</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="space-y-4">
+        <div class="text-center py-2">
+          <span class="bg-brand-100 text-brand-800 text-xs font-extrabold uppercase px-3 py-1 rounded-full tracking-wider">Admission Open</span>
+          <h3 class="text-xl md:text-2xl font-black text-slate-800 mt-1">License Course Admission</h3>
+          <p class="text-xs md:text-sm text-slate-600">আপনার নার্সিং ক্যাটাগরি অনুযায়ী সঠিক কোর্সে ভর্তি নিশ্চিত করুন।</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          
+          <!-- PROGRAM 01 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:border-brand-300 transition relative">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">PROGRAM 01</span>
+              <h4 class="text-lg font-bold text-slate-800 leading-snug">Regular BSc License Course</h4>
+              <p class="text-xs text-brand-600 font-semibold mt-0.5">4th Year Completed + Internship</p>
+              <p class="text-xs text-slate-500 mt-2">For BSc Nursing students who have completed 4th year and are preparing for the March 2027 Nursing License Examination.</p>
+              
+              <div class="my-4 flex items-baseline gap-2">
+                <span class="text-2xl font-black text-brand-600">৳2000</span>
+                <span class="text-sm text-slate-400 line-through">৳3000</span>
+                <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-md">Save ৳1000</span>
+              </div>
+
+              <ul class="space-y-2 text-xs text-slate-700 my-4 border-t border-slate-100 pt-3">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> License Book</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Suggestion Book</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Question Bank</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Routine-Based Classes</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Regular Exams</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Super Secret Suggestion</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Mentor Support</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Model Tests</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> BNMC-Style Online Exams</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 gap-2 flex flex-col">
+              <a href="https://wa.me/8801792439561" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs text-center flex items-center justify-center gap-1.5 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Join Now WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- PROGRAM 02 (Most Popular) -->
+          <div class="bg-white rounded-2xl shadow-md border-2 border-brand-500 p-5 flex flex-col justify-between relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full tracking-wider shadow">
+              Most Popular
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1 mt-1">PROGRAM 02</span>
+              <h4 class="text-lg font-bold text-slate-800 leading-snug">Special Batch</h4>
+              <p class="text-xs text-brand-600 font-semibold mt-0.5">BSc / Diploma / Midwifery</p>
+              <p class="text-xs text-slate-500 mt-2">Specially designed for students who have failed the Nursing License Examination multiple times.</p>
+              
+              <div class="my-4 flex items-baseline gap-2">
+                <span class="text-2xl font-black text-brand-600">৳2000</span>
+                <span class="text-sm text-slate-400 line-through">৳3000</span>
+                <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-md">Save ৳1000</span>
+              </div>
+
+              <ul class="space-y-2 text-xs text-slate-700 my-4 border-t border-slate-100 pt-3">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> License Book</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Suggestion Book</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Question Bank</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Routine-Based Classes</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Regular Exams</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Super Secret Suggestion</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Mentor Support</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Model Tests</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> BNMC-Style Online Exams</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 gap-2 flex flex-col">
+              <a href="https://wa.me/8801792439561" target="_blank" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2 rounded-xl text-xs text-center flex items-center justify-center gap-1.5 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Join Now WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- PROGRAM 03 -->
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:border-brand-300 transition relative">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block mb-1">PROGRAM 03</span>
+              <h4 class="text-lg font-bold text-slate-800 leading-snug">Dedicated Midwifery License Batch</h4>
+              <p class="text-xs text-brand-600 font-semibold mt-0.5">Midwifery Students</p>
+              <p class="text-xs text-slate-500 mt-2">A dedicated Nursing License preparation program specially designed for Midwifery students.</p>
+              
+              <div class="my-4 flex items-baseline gap-2">
+                <span class="text-2xl font-black text-brand-600">৳2000</span>
+                <span class="text-sm text-slate-400 line-through">৳3000</span>
+                <span class="text-[10px] bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-md">Save ৳1000</span>
+              </div>
+
+              <ul class="space-y-2 text-xs text-slate-700 my-4 border-t border-slate-100 pt-3">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> License Book</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Suggestion Book</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Question Bank</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Routine-Based Classes</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Regular Exams</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Super Secret Suggestion</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Mentor Support</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Model Tests</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> BNMC-Style Online Exams</li>
+              </ul>
+            </div>
+
+            <div class="pt-2 gap-2 flex flex-col">
+              <a href="https://wa.me/8801792439561" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs text-center flex items-center justify-center gap-1.5 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Join Now WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Contact Hotline Box -->
+        <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 rounded-2xl text-center shadow flex flex-wrap items-center justify-around gap-3 text-xs md:text-sm">
+          <div><i class="fa-solid fa-phone text-amber-400 mr-1"></i> <strong>Call:</strong> 01792439561, 01764890174</div>
+          <div><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> <strong>WhatsApp:</strong> 01792439561, 01764890174</div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <section id="examContainer" class="hidden space-y-4">
+      
+      <!-- Sticky Question Jump Palette & Progress Header -->
+      <div class="sticky top-14 z-40 bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-md border border-slate-200">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center space-x-2 text-xs font-bold text-slate-700">
+            <i class="fa-solid fa-list-ol text-brand-600"></i>
+            <span>Question Palette</span>
+            <span id="answeredCounter" class="bg-brand-100 text-brand-800 px-2 py-0.5 rounded-full text-[11px]">0 / 50 Answered</span>
+          </div>
+          <button onclick="confirmSubmission()" class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition shadow">
+            Submit Exam
+          </button>
+        </div>
+
+        <!-- Quick Jump 1 to 50 Palette -->
+        <div id="questionGridNav" class="flex gap-1.5 overflow-x-auto pb-1 pt-1 custom-scrollbar">
+          <!-- Dynamically populated 1 to 50 buttons -->
+        </div>
+      </div>
+
+      <!-- Candidate Banner -->
+      <div class="bg-slate-800 text-white p-3.5 rounded-xl text-xs flex flex-wrap justify-between items-center gap-2">
+        <div><span class="text-slate-400">Examinee:</span> <strong id="displayName" class="text-amber-300">---</strong></div>
+        <div><span class="text-slate-400">Phone:</span> <strong id="displayPhone" class="text-amber-300">---</strong></div>
+        <div><span class="text-slate-400">Course:</span> <strong id="displayCourse" class="text-amber-300">---</strong></div>
+      </div>
+
+      <!-- Question Paper Container (All 50 questions rendered together) -->
+      <form id="quizForm" onsubmit="submitExam(event)" class="space-y-4">
+        
+        <div id="allQuestionsContainer" class="space-y-4">
+          <!-- 50 Questions injected here -->
+        </div>
+
+        <!-- Bottom Final Submit Button -->
+        <div class="bg-white p-5 rounded-2xl shadow border border-slate-200 text-center">
+          <p class="text-xs text-slate-500 mb-3">Please review all your answers using the top Palette before submitting.</p>
+          <button type="button" onclick="confirmSubmission()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-10 rounded-xl shadow-lg hover:shadow-brand-500/25 transition duration-200 text-base">
+            <i class="fa-solid fa-paper-plane mr-2"></i> Final Submit Examination
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section id="resultCard" class="hidden space-y-6">
+      
+      <!-- Summary Score Box -->
+      <div class="bg-white rounded-2xl shadow-md p-6 border border-slate-200 text-center max-w-xl mx-auto">
+        <div id="resultIcon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800 mb-1">Exam Completed</h2>
+        <p class="text-xs text-slate-500 mb-4">Pulse Nursing Coaching License Preparation Test</p>
+        
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-2 mb-4">
+          <div class="text-3xl font-black text-brand-700"><span id="scoreText">0</span> / 50</div>
+          <div class="text-xs font-bold text-slate-600" id="percentageText">0%</div>
+          <div id="statusBadge" class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"></div>
+        </div>
+
+        <div id="syncStatus" class="text-xs text-slate-500 mb-4"></div>
+
+        <button onclick="window.location.reload()" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold py-2.5 px-6 rounded-xl transition text-xs">
+          <i class="fa-solid fa-rotate-right mr-1"></i> Retake Test / Back to Home
+        </button>
+      </div>
+
+      <!-- Comprehensive Answer Key & Review -->
+      <div class="bg-white rounded-2xl shadow p-5 border border-slate-200">
+        <h3 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-3 flex items-center gap-2">
+          <i class="fa-solid fa-square-check text-emerald-600"></i> Answer Key & Detailed Explanations
+        </h3>
+        <div id="answerReviewList" class="space-y-4">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFG2K8Z36BSh27Stq4TBDXQKeIvNTsHP9bM27raJKccc0uiG9EuFNz7LYdRIHY-5LA/exec";
+
+    // 50 Standard BNMC English Nursing License Questions
+    const examQuestions = [
+      { id: 1, subject: "Fundamentals of Nursing", q: "What is the normal pulse rate range for an adult at rest?", options: ["40–60 bpm", "60–100 bpm", "100–120 bpm", "120–140 bpm"], correct: 1, exp: "Normal resting adult heart rate ranges between 60 and 100 beats per minute." },
+      { id: 2, subject: "Anatomy & Physiology", q: "Which organ plays the primary role in long-term blood pressure regulation?", options: ["Heart", "Lungs", "Kidneys", "Liver"], correct: 2, exp: "The kidneys control long-term blood pressure through fluid volume control and the renin-angiotensin-aldosterone system." },
+      { id: 3, subject: "Medical-Surgical", q: "Which position is most appropriate for a patient experiencing acute dyspnea?", options: ["Supine position", "Fowler's position", "Prone position", "Trendelenburg position"], correct: 1, exp: "Fowler's or High-Fowler's position promotes maximum lung expansion and reduces breathing difficulty." },
+      { id: 4, subject: "Microbiology", q: "What is the primary causative organism of Tuberculosis?", options: ["Mycobacterium tuberculosis", "Streptococcus pneumoniae", "Escherichia coli", "Staphylococcus aureus"], correct: 0, exp: "Tuberculosis is caused by the acid-fast bacillus Mycobacterium tuberculosis." },
+      { id: 5, subject: "Midwifery & Obstetrics", q: "What is the normal duration of a full-term human pregnancy?", options: ["32 weeks", "36 weeks", "40 weeks", "44 weeks"], correct: 2, exp: "Full-term pregnancy is expected at 40 weeks (280 days) from the first day of the last menstrual period." },
+      { id: 6, subject: "Nutrition", q: "Deficiency of which vitamin causes Scurvy?", options: ["Vitamin A", "Vitamin B12", "Vitamin C", "Vitamin D"], correct: 2, exp: "Vitamin C (ascorbic acid) deficiency causes Scurvy, leading to bleeding gums and skin lesions." },
+      { id: 7, subject: "Emergency & First Aid", q: "What is the recommended compression rate per minute during adult CPR?", options: ["60–80 per min", "80–100 per min", "100–120 per min", "120–140 per min"], correct: 2, exp: "AHA guidelines recommend 100 to 120 chest compressions per minute for effective CPR." },
+      { id: 8, subject: "Pharmacology", q: "Which route of drug administration provides 100% bioavailability instantly?", options: ["Oral", "Subcutaneous", "Intramuscular", "Intravenous"], correct: 3, exp: "Intravenous (IV) delivery places the medication directly into circulation with complete bioavailability." },
+      { id: 9, subject: "Midwifery & Obstetrics", q: "What is the primary physiological action of oxytocin during labor?", options: ["Relaxes the cervix", "Stimulates uterine contractions", "Increases maternal blood pressure", "Decreases fetal heart rate"], correct: 1, exp: "Oxytocin stimulates uterine smooth muscle contractions during labor and delivery." },
+      { id: 10, subject: "Anatomy & Physiology", q: "What is the principal function of hemoglobin in red blood cells?", options: ["Transport oxygen", "Fight infection", "Clot blood", "Produce antibodies"], correct: 0, exp: "Hemoglobin binds to oxygen in lungs and transports it to tissue cells." },
+      { id: 11, subject: "Pediatric Nursing", q: "Which intramuscular injection site is preferred in infants under 1 year?", options: ["Deltoid muscle", "Gluteus maximus", "Vastus lateralis", "Ventrogluteal"], correct: 2, exp: "The vastus lateralis muscle of the anterolateral thigh is the safest site in infants." },
+      { id: 12, subject: "Fundamentals of Nursing", q: "What is considered normal average human body temperature in Celsius?", options: ["35.5 °C", "37.0 °C", "38.2 °C", "39.0 °C"], correct: 1, exp: "Normal core body temperature averages around 37.0 °C (98.6 °F)." },
+      { id: 13, subject: "Community Health & Immunity", q: "Which antibody is predominant in colostrum and breast milk?", options: ["IgA", "IgG", "IgM", "IgE"], correct: 0, exp: "Secretory IgA is passed via breast milk to protect the infant's GI mucosal barrier." },
+      { id: 14, subject: "Midwifery & Obstetrics", q: "What is the leading cause of Primary Postpartum Hemorrhage (PPH)?", options: ["Uterine atony", "Cervical laceration", "Retained placenta", "Coagulation failure"], correct: 0, exp: "Uterine atony (failure of uterus to contract after delivery) accounts for 70-80% of PPH cases." },
+      { id: 15, subject: "Infection Control", q: "Which container color is standard for sharps disposal (needles, scalpels)?", options: ["Yellow bin", "Red bag", "Puncture-proof yellow/red sharp box", "Black bin"], correct: 2, exp: "Sharps must always go into rigid, puncture-resistant biohazard sharp containers." },
+      { id: 16, subject: "Medical-Surgical", q: "What is the medical term for persistently high blood pressure?", options: ["Hypotension", "Hypertension", "Hyperglycemia", "Hypoxia"], correct: 1, exp: "Hypertension refers to persistent arterial blood pressure elevation." },
+      { id: 17, subject: "Anatomy & Physiology", q: "Which specific organ synthesizes and secretes insulin?", options: ["Liver", "Gallbladder", "Pancreas (Islets of Langerhans)", "Spleen"], correct: 2, exp: "Beta cells in the Islets of Langerhans within the pancreas secrete insulin." },
+      { id: 18, subject: "Emergency & Trauma", q: "What is the highest priority in the initial management of a severe burn patient?", options: ["Wound dressing", "Airway management", "Pain relief", "Prophylactic antibiotics"], correct: 1, exp: "Airway and breathing assessment (ABC rule) always takes top priority." },
+      { id: 19, subject: "Emergency & CPR", q: "What is the CPR chest compression-to-ventilation ratio for single rescuer in adults?", options: ["15:2", "30:2", "5:1", "50:2"], correct: 1, exp: "Standard adult CPR ratio is 30 chest compressions followed by 2 rescue breaths." },
+      { id: 20, subject: "Midwifery & Nutrition", q: "Periconceptional intake of which vitamin prevents Neural Tube Defects (NTD)?", options: ["Iron", "Calcium", "Folic Acid (Vitamin B9)", "Zinc"], correct: 2, exp: "Folic acid supplementation prior to conception and early pregnancy prevents spinal spina bifida and NTDs." },
+      { id: 21, subject: "Medical-Surgical", q: "What is inflammation of a vein called?", options: ["Arteritis", "Phlebitis", "Gastritis", "Nephritis"], correct: 1, exp: "Phlebitis is the medical term for inflammation of the wall of a vein." },
+      { id: 22, subject: "Midwifery & Obstetrics", q: "At approximately how many weeks gestation is the fundus level with the umbilicus?", options: ["12 weeks", "20 weeks", "28 weeks", "36 weeks"], correct: 1, exp: "At 20 weeks of pregnancy, the uterine fundus reaches the level of the umbilicus." },
+      { id: 23, subject: "Anatomy & Physiology", q: "Where is bile stored and concentrated before release into the intestine?", options: ["Pancreas", "Gallbladder", "Stomach", "Duodenum"], correct: 1, exp: "Bile is produced by the liver and stored/concentrated in the gallbladder." },
+      { id: 24, subject: "Fundamentals of Nursing", q: "What is the minimum normal hourly urine output for an adult?", options: ["10 mL/hr", "30 mL/hr", "80 mL/hr", "120 mL/hr"], correct: 1, exp: "An output below 30 mL/hour indicates potential renal insufficiency or hypovolemia." },
+      { id: 25, subject: "Neurology", q: "A Glasgow Coma Scale (GCS) score equal to or less than what value indicates severe coma?", options: ["15", "12", "8", "10"], correct: 2, exp: "A GCS score of 8 or lower generally indicates severe brain injury/coma requiring intubation." },
+      { id: 26, subject: "Midwifery & Postpartum", q: "What is the initial red vaginal discharge observed during the first 3-4 days post-delivery?", options: ["Lochia Alba", "Lochia Serosa", "Lochia Rubra", "Amniotic Fluid"], correct: 2, exp: "Lochia Rubra is dark red postpartum vaginal discharge occurring days 1 to 4." },
+      { id: 27, subject: "Pharmacology & Fluids", q: "Severe alterations in which serum electrolyte can trigger fatal cardiac arrhythmias?", options: ["Sodium", "Potassium", "Calcium", "Chloride"], correct: 1, exp: "Both hypokalemia and hyperkalemia significantly alter cardiac conduction and can induce cardiac arrest." },
+      { id: 28, subject: "Medical Terminology", q: "What is the correct clinical term for difficulty in swallowing?", options: ["Dysphasia", "Dysphagia", "Dyspnea", "Dyspepsia"], correct: 1, exp: "Dysphagia refers to difficulty swallowing, whereas dysphasia refers to speech difficulty." },
+      { id: 29, subject: "Midwifery & Obstetrics", q: "How many stages of labor are classically described?", options: ["Two", "Three", "Four", "Five"], correct: 2, exp: "Labor is divided into 4 stages: Dilation, Expulsion of fetus, Placental delivery, and Recovery." },
+      { id: 30, subject: "Anatomy & Physiology", q: "Which cranial nerve (CN II) is responsible for transmitting visual information?", options: ["CN I (Olfactory)", "CN II (Optic)", "CN III (Oculomotor)", "CN VIII (Vestibulocochlear)"], correct: 1, exp: "Cranial Nerve II is the Optic Nerve, responsible for vision." },
+      { id: 31, subject: "Midwifery & Obstetrics", q: "What is the primary objective of performing Leopold's Maneuvers?", options: ["Estimate blood loss", "Determine fetal lie, presentation, and position", "Check cervical dilation", "Assess maternal heart rate"], correct: 1, exp: "Leopold's Maneuvers are 4 abdominal palpation steps to assess fetal presentation and position." },
+      { id: 32, subject: "Emergency & Shock", q: "Which type of shock results from severe systemic allergic reactions?", options: ["Hypovolemic Shock", "Anaphylactic Shock", "Cardiogenic Shock", "Neurogenic Shock"], correct: 1, exp: "Anaphylactic shock is a severe IgE-mediated allergic response causing massive vasodilation." },
+      { id: 33, subject: "Medical-Surgical", q: "What is the normal fasting plasma glucose range for a healthy individual?", options: ["70–99 mg/dL", "110–140 mg/dL", "140–180 mg/dL", "200+ mg/dL"], correct: 0, exp: "Normal fasting blood glucose ranges between 70 and 99 mg/dL (3.9 - 5.5 mmol/L)." },
+      { id: 34, subject: "Anatomy & Physiology", q: "Which brain structure acts as the body's central thermostat?", options: ["Cerebrum", "Cerebellum", "Hypothalamus", "Medulla Oblongata"], correct: 2, exp: "The Hypothalamus regulates body temperature, hunger, thirst, and hormone release." },
+      { id: 35, subject: "Pediatrics & Neonatology", q: "What does the APGAR score assess in a newborn infant?", options: ["Gestational age", "Immediate physical adaptation at birth", "Weight percentile", "Reflexes only"], correct: 1, exp: "APGAR evaluates Heart rate, Respiratory effort, Muscle tone, Reflex irritability, and Color at 1 & 5 mins." },
+      { id: 36, subject: "Fundamentals & Fluids", q: "Which intravenous fluid is classified as an isotonic solution?", options: ["0.45% Normal Saline", "0.9% Normal Saline", "3% Saline", "Dextrose 10% in Water"], correct: 1, exp: "0.9% Sodium Chloride (Normal Saline) has an osmolarity equal to serum and is isotonic." },
+      { id: 37, subject: "Community & Midwifery", q: "Globally, what is the single leading direct cause of maternal mortality?", options: ["Eclampsia", "Postpartum Hemorrhage (PPH)", "Sepsis", "Obstructed Labor"], correct: 1, exp: "Postpartum Hemorrhage is the leading global cause of maternal deaths." },
+      { id: 38, subject: "Fundamentals & Cardiology", q: "A resting heart rate below 60 beats per minute in an adult is termed:", options: ["Tachycardia", "Bradycardia", "Arrhythmia", "Asystole"], correct: 1, exp: "Bradycardia refers to a pulse rate under 60 bpm." },
+      { id: 39, subject: "Midwifery & Immunology", q: "Which antibody immunoglobulin class efficiently crosses the placenta?", options: ["IgA", "IgG", "IgM", "IgD"], correct: 1, exp: "IgG is the only antibody class that readily crosses the placenta to confer passive immunity." },
+      { id: 40, subject: "Infection Control", q: "What is the single most effective measure to break the chain of infection?", options: ["Wearing sterile gloves", "Hand hygiene", "Wearing N95 masks", "Prophylactic antibiotics"], correct: 1, exp: "Hand hygiene is universally acknowledged as the single most critical infection control action." },
+      { id: 41, subject: "Anatomy & Physiology", q: "What is the main physiological function of the large intestine?", options: ["Digesting proteins", "Absorption of water and electrolytes", "Bile secretion", "Fat emulsification"], correct: 1, exp: "The large intestine absorbs remaining water and salts, forming solid stool." },
+      { id: 42, subject: "Midwifery & High-Risk Pregnancy", q: "Hypertension combined with proteinuria after 20 weeks gestation defines:", options: ["Gestational Diabetes", "Preeclampsia", "Placenta Previa", "Abruptio Placentae"], correct: 1, exp: "Preeclampsia is characterized by new-onset hypertension and proteinuria after 20 weeks." },
+      { id: 43, subject: "Fundamentals of Nursing", q: "What gauge needle cannula is standard for adult blood transfusion?", options: ["24G", "22G", "18G", "26G"], correct: 2, exp: "An 18-gauge cannula prevents hemolysis of red blood cells during rapid blood transfusion." },
+      { id: 44, subject: "Medical Terminology", q: "What is the medical term for complete temporary cessation of breathing?", options: ["Dyspnea", "Apnea", "Bradypnea", "Orthopnea"], correct: 1, exp: "Apnea means temporary absence or cessation of breathing." },
+      { id: 45, subject: "Pediatrics & Neonatology", q: "In the APGAR score acronym, what does the first 'A' represent?", options: ["Airway", "Appearance (Skin Color)", "Activity", "Age"], correct: 1, exp: "APGAR stands for Appearance, Pulse, Grimace, Activity, Respiration." },
+      { id: 46, subject: "Midwifery & Lactation", q: "Which hormone is responsible for the milk ejection reflex ('let-down')?", options: ["Prolactin", "Oxytocin", "Estrogen", "Progesterone"], correct: 1, exp: "Prolactin produces milk, but Oxytocin causes contraction of myoepithelial cells for milk ejection." },
+      { id: 47, subject: "Fundamentals of Nursing", q: "What is the normal respiratory rate range for a healthy adult at rest?", options: ["8–10 breaths/min", "12–20 breaths/min", "25–30 breaths/min", "30–40 breaths/min"], correct: 1, exp: "Normal adult resting respiratory rate is 12 to 20 breaths per minute." },
+      { id: 48, subject: "Pharmacology", q: "What is the most critical life-threatening adverse effect of opioid administration?", options: ["Tachycardia", "Respiratory depression", "Hypertension", "Diarrhea"], correct: 1, exp: "Opioids depress the central nervous system and can cause fatal respiratory depression." },
+      { id: 49, subject: "Fundamentals & Nursing Care", q: "A localized injury to skin or underlying tissue over a bony prominence is called:", options: ["Eczema", "Pressure Injury / Decubitus Ulcer", "Psoriasis", "Dermatitis"], correct: 1, exp: "Pressure injuries develop due to prolonged ischemia over bony prominences." },
+      { id: 50, subject: "Midwifery & Labor Management", q: "What is the principal goal of Active Management of Third Stage of Labor (AMTSL)?", options: ["Prevent perineal tears", "Prevent Postpartum Hemorrhage (PPH)", "Speed up cervical dilation", "Relieve labor pain"], correct: 1, exp: "AMTSL (uterotonic, controlled cord traction, uterine massage) drastically reduces PPH risk." }
+    ];
+
+    let timerInterval = null;
+    let timeRemaining = 2400; // 40 minutes in seconds
+    let userDetails = {};
+    let answersState = {}; // Stores questionId: selectedIndex
+
+    function scrollToRegistration() {
+      document.getElementById('registrationCard').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function startExam(e) {
+      e.preventDefault();
+
+      userDetails = {
+        name: document.getElementById('candidateName').value.trim(),
+        phone: document.getElementById('candidatePhone').value.trim(),
+        course: document.getElementById('candidateCourse').value
+      };
+
+      if (!userDetails.name || !userDetails.phone || !userDetails.course) {
+        alert("Please fill in all candidate details.");
+        return;
+      }
+
+      // Update Top Displays
+      document.getElementById('displayName').innerText = userDetails.name;
+      document.getElementById('displayPhone').innerText = userDetails.phone;
+      document.getElementById('displayCourse').innerText = userDetails.course;
+
+      // Switch Screens
+      document.getElementById('dashboardSection').classList.add('hidden');
+      document.getElementById('examContainer').classList.remove('hidden');
+      document.getElementById('headerTimerWidget').classList.remove('hidden');
+
+      // Render 1 to 50 Navigation Palette & All 50 Questions
+      renderPaletteNav();
+      renderAllQuestions();
+      startTimer();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Render Quick Jump 1 to 50 Palette
+    function renderPaletteNav() {
+      const navContainer = document.getElementById('questionGridNav');
+      navContainer.innerHTML = examQuestions.map((q, idx) => `
+        <button type="button" id="paletteBtn_${q.id}" onclick="jumpToQuestion(${q.id})" 
+          class="flex-shrink-0 w-8 h-8 rounded-lg text-xs font-bold transition border border-slate-300 bg-slate-100 text-slate-700 hover:border-brand-500">
+          ${q.id}
+        </button>
+      `).join('');
+    }
+
+    // Render ALL 50 questions together on single scroll page
+    function renderAllQuestions() {
+      const container = document.getElementById('allQuestionsContainer');
+      container.innerHTML = examQuestions.map((q, idx) => `
+        <div id="questionCard_${q.id}" class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-200 transition scroll-mt-36">
+          
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200/50">
+              ${q.subject}
+            </span>
+            <span class="text-xs font-bold text-slate-400">Q${q.id} of 50</span>
+          </div>
+
+          <h4 class="text-sm md:text-base font-bold text-slate-800 mb-3 leading-snug">
+            <span class="text-brand-600 mr-1">${q.id}.</span> ${q.q}
+          </h4>
+
+          <div class="space-y-2">
+            ${q.options.map((opt, oIdx) => `
+              <label class="flex items-center space-x-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition text-xs md:text-sm text-slate-700">
+                <input type="radio" name="q_${q.id}" value="${oIdx}" onchange="registerAnswer(${q.id}, ${oIdx})" class="w-4 h-4 text-brand-600 focus:ring-brand-500 border-slate-300">
+                <span class="font-medium">${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+              </label>
+            `).join('')}
+          </div>
+
+        </div>
+      `).join('');
+    }
+
+    // Update answer state when radio option selected
+    function registerAnswer(qId, optionIdx) {
+      answersState[qId] = optionIdx;
+      
+      // Update Palette Button Style
+      const paletteBtn = document.getElementById(`paletteBtn_${qId}`);
+      if (paletteBtn) {
+        paletteBtn.className = "flex-shrink-0 w-8 h-8 rounded-lg text-xs font-bold transition border border-emerald-500 bg-emerald-600 text-white shadow-sm";
+      }
+
+      // Update Question Card Border
+      const qCard = document.getElementById(`questionCard_${qId}`);
+      if (qCard) {
+        qCard.classList.add('border-brand-300', 'bg-slate-50/30');
+      }
+
+      // Update Counter
+      const answeredCount = Object.keys(answersState).length;
+      document.getElementById('answeredCounter').innerText = `${answeredCount} / 50 Answered`;
+    }
+
+    function jumpToQuestion(qId) {
+      const target = document.getElementById(`questionCard_${qId}`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function startTimer() {
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          alert("Time is up! Your examination paper will be submitted automatically.");
+          submitExam();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timeRemaining / 60);
+      const secs = timeRemaining % 60;
+      const formatted = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      
+      const display = document.getElementById('timerDisplay');
+      display.innerText = formatted;
+
+      if (timeRemaining < 300) { // Under 5 mins turns warning red
+        display.classList.remove('text-amber-300');
+        display.classList.add('text-rose-400', 'animate-pulse');
+      }
+    }
+
+    function confirmSubmission() {
+      const answeredCount = Object.keys(answersState).length;
+      const unanswered = 50 - answeredCount;
+      let msg = `You have answered ${answeredCount} of 50 questions.`;
+      if (unanswered > 0) {
+        msg += ` You still have ${unanswered} unanswered questions!`;
+      }
+      msg += "\nAre you sure you want to finalize and submit?";
+
+      if (confirm(msg)) {
+        submitExam();
+      }
+    }
+
+    function submitExam(e) {
+      if (e) e.preventDefault();
+      clearInterval(timerInterval);
+
+      let score = 0;
+      const total = examQuestions.length;
+
+      examQuestions.forEach(q => {
+        const userAns = answersState[q.id];
+        if (userAns !== undefined && userAns === q.correct) {
+          score++;
+        }
+      });
+
+      // Switch Screens
+      document.getElementById('examContainer').classList.add('hidden');
+      document.getElementById('headerTimerWidget').classList.add('hidden');
+      document.getElementById('resultCard').classList.remove('hidden');
+
+      const percentage = ((score / total) * 100).toFixed(1);
+      document.getElementById('scoreText').innerText = score;
+      document.getElementById('percentageText').innerText = `${percentage}% Total Score`;
+
+      const badge = document.getElementById('statusBadge');
+      const icon = document.getElementById('resultIcon');
+
+      if (percentage >= 50) {
+        badge.innerText = "PASSED";
+        badge.className = "inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300";
+        icon.className = "w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold bg-emerald-100 text-emerald-600";
+      } else {
+        badge.innerText = "FAILED";
+        badge.className = "inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-800 border border-rose-300";
+        icon.className = "w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold bg-rose-100 text-rose-600";
+      }
+
+      renderAnswerReview();
+      sendToGoogleSheet(score, total);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderAnswerReview() {
+      const reviewContainer = document.getElementById('answerReviewList');
+      reviewContainer.innerHTML = examQuestions.map((q, idx) => {
+        const userAns = answersState[q.id];
+        const isCorrect = userAns === q.correct;
+        const isUnanswered = userAns === undefined;
+
+        let statusClass = "border-emerald-200 bg-emerald-50/40";
+        let statusBadge = `<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fa-solid fa-check"></i> Correct</span>`;
+
+        if (isUnanswered) {
+          statusClass = "border-amber-200 bg-amber-50/40";
+          statusBadge = `<span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fa-solid fa-minus"></i> Unanswered</span>`;
+        } else if (!isCorrect) {
+          statusClass = "border-rose-200 bg-rose-50/40";
+          statusBadge = `<span class="bg-rose-100 text-rose-800 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fa-solid fa-xmark"></i> Incorrect</span>`;
+        }
+
+        return `
+          <div class="p-4 rounded-xl border ${statusClass} space-y-2 text-xs md:text-sm">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-500">Question ${q.id}</span>
+              ${statusBadge}
+            </div>
+            
+            <p class="font-bold text-slate-800">${q.q}</p>
+
+            <div class="space-y-1 text-xs mt-2">
+              <p><strong class="text-slate-600">Your Answer:</strong> 
+                <span class="${isCorrect ? 'text-emerald-700 font-bold' : (isUnanswered ? 'text-amber-700 font-bold' : 'text-rose-700 font-bold')}">
+                  ${isUnanswered ? 'Not Answered' : String.fromCharCode(65 + userAns) + '. ' + q.options[userAns]}
+                </span>
+              </p>
+              <p><strong class="text-slate-600">Correct Answer:</strong> 
+                <span class="text-emerald-700 font-bold">${String.fromCharCode(65 + q.correct)}. ${q.options[q.correct]}</span>
+              </p>
+            </div>
+
+            <div class="bg-white p-2.5 rounded-lg border border-slate-200/80 text-xs text-slate-600 mt-2">
+              <strong class="text-slate-800 block mb-0.5"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i> Explanation:</strong>
+              ${q.exp}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function sendToGoogleSheet(score, total) {
+      const statusDiv = document.getElementById('syncStatus');
+      statusDiv.innerHTML = `<span class="text-slate-500"><i class="fa-solid fa-spinner animate-spin"></i> Syncing score to Google Sheet...</span>`;
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: userDetails.name,
+          roll: userDetails.phone, // Passing phone number to sheet entry
+          course: userDetails.course,
+          score: score,
+          total: total
+        })
+      })
+      .then(() => {
+        statusDiv.innerHTML = `<span class="text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check"></i> Results saved successfully to Google Sheet!</span>`;
+      })
+      .catch((err) => {
+        statusDiv.innerHTML = `<span class="text-rose-600"><i class="fa-solid fa-triangle-exclamation"></i> Could not connect to Google Sheet backend.</span>`;
+      });
+    }
+  </script>
+</body>
+</html>
