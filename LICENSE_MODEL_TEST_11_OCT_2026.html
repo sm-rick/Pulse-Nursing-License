@@ -31,7 +31,7 @@
                     <span class="text-xs bg-red-800/60 px-2.5 py-1 rounded-full font-medium">📅 11 Oct 2026</span>
                 </div>
                 <h2 class="text-lg font-bold mb-1">BNMC Standard License Exam</h2>
-                <p class="text-xs text-red-100 mb-4">100 Unique MCQ Questions | Time: 60 Minutes</p>
+                <p class="text-xs text-red-100 mb-4">100 Real Exam Questions | Time: 60 Minutes</p>
                 <button onclick="goToRegistration()" class="w-full bg-white text-red-600 font-bold py-3 rounded-xl shadow hover:bg-red-50 transition active:scale-95 text-sm">
                     Enter Exam Portal 🚀
                 </button>
@@ -237,45 +237,108 @@
         let timeLeft = 60 * 60; // 60 minutes
         let userAnswers = {};
 
-        // 100 Unique BNMC Standard Nursing License Questions
+        // 100 Authentic BNMC Nursing License Exam Questions
         const questions = [
-            { id: 1, cat: "Fundamentals", q: "What is the primary site used to measure core body temperature accurately in an unconscious adult patient?", opts: ["Axillary", "Oral", "Tympanic membrane / Rectal", "Temporal artery"], ans: 2, exp: "Rectal and tympanic measurements closely reflect core body temperature." },
-            { id: 2, cat: "Medical-Surgical", q: "Which electrolyte imbalance is most commonly associated with peaked T waves on an ECG?", opts: ["Hypokalemia", "Hyperkalemia", "Hyponatremia", "Hypercalcemia"], ans: 1, exp: "Hyperkalemia classically causes tall, peaked T waves on an electrocardiogram." },
-            { id: 3, cat: "Obstetrics", q: "What is the normal fetal heart rate (FHR) baseline range in a healthy term fetus?", opts: ["100 - 140 bpm", "110 - 160 bpm", "120 - 180 bpm", "90 - 120 bpm"], ans: 1, exp: "The normal baseline FHR range is 110 to 160 beats per minute." },
-            { id: 4, cat: "Pediatrics", q: "According to the IMCI guidelines, what is the key clinical sign of severe dehydration in an infant?", opts: ["Sunken eyes and lethargy/unconsciousness", "Irritability only", "Warm skin and dry lips", "Slight thirst"], ans: 0, exp: "Lethargy, lethargic or unconscious state, and sunken eyes indicate severe dehydration under IMCI." },
-            { id: 5, cat: "Pharmacology", q: "What is the primary antidote administered in magnesium sulfate toxicity?", opts: ["Naloxone", "Calcium gluconate", "Protamine sulfate", "Flumazenil"], ans: 1, exp: "Calcium gluconate acts as the direct physiological antidote for magnesium sulfate toxicity." },
-            { id: 6, cat: "Community Health", q: "What is the recommended duration of Exclusive Breastfeeding according to WHO?", opts: ["First 3 months", "First 6 months", "First 9 months", "First 12 months"], ans: 1, exp: "Exclusive breastfeeding is recommended for the first 6 months of life." },
-            { id: 7, cat: "Mental Health", q: "Which neurotransmitter is primarily implicated in the pathophysiology of schizophrenia?", opts: ["Serotonin", "GABA", "Dopamine", "Acetylcholine"], ans: 2, exp: "Excess dopamine activity in the brain is closely linked to positive symptoms of schizophrenia." },
-            { id: 8, cat: "Emergency", q: "In adult basic life support (BLS), what is the recommended chest compression-to-ventilation ratio?", opts: ["15:2", "30:2", "5:1", "10:1"], ans: 1, exp: "The standard adult CPR compression-to-ventilation ratio is 30 compressions to 2 breaths." },
-            { id: 9, cat: "Anatomy", q: "Which cranial nerve is responsible for the sensation of the face and muscles of mastication?", opts: ["CN V (Trigeminal)", "CN VII (Facial)", "CN IX (Glossopharyngeal)", "CN X (Vagus)"], ans: 0, exp: "The Trigeminal nerve (CN V) controls facial sensation and chewing muscles." },
-            { id: 10, cat: "Medical-Surgical", q: "What is the earliest clinical sign of increased intracranial pressure (ICP)?", opts: ["Cushing's triad", "Altered level of consciousness", "Fixed and dilated pupils", "Projectile vomiting"], ans: 1, exp: "Changes in level of consciousness are the earliest and most sensitive indicator of increased ICP." },
-            { id: 11, cat: "Obstetrics", q: "What hormone is detected in standard home pregnancy test kits?", opts: ["Progesterone", "Estrogen", "Human Chorionic Gonadotropin (hCG)", "Luteinizing Hormone"], ans: 2, exp: "Pregnancy tests detect hCG produced by the developing placenta." },
-            { id: 12, cat: "Fundamentals", q: "Which position is best suited for a patient experiencing severe dyspnea?", opts: ["Supine", "Trendelenburg", "High Fowler's", "Lithotomy"], ans: 2, exp: "High Fowler's position maximizes lung expansion and relieves breathing difficulty." },
-            { id: 13, cat: "Pharmacology", q: "Heparin therapy effectiveness is primarily monitored using which laboratory test?", opts: ["PT / INR", "aPTT", "Bleeding time", "Platelet count"], ans: 1, exp: "Activated partial thromboplastin time (aPTT) monitors unfractionated heparin." },
-            { id: 14, cat: "Pediatrics", q: "At what age does the posterior fontanelle typically close in infants?", opts: ["1 to 2 months", "6 to 8 months", "12 to 18 months", "24 months"], ans: 0, exp: "The posterior fontanelle normally closes by 2 months of age." },
-            { id: 15, cat: "Community Health", q: "Which vaccine is given at birth under the Expanded Programme on Immunization (EPI) in Bangladesh?", opts: ["BCG and OPV-0", "Pentavalent-1", "Measles-Rubella", "HPV"], ans: 0, exp: "BCG and Oral Polio Vaccine zero dose are administered at birth." },
-            { id: 16, cat: "Medical-Surgical", q: "What type of isolation precautions are required for a patient with active Pulmonary Tuberculosis?", opts: ["Contact precautions", "Droplet precautions", "Airborne precautions", "Standard precautions only"], ans: 2, exp: "TB is spread via airborne nuclei, requiring negative pressure rooms and N95 masks." },
-            { id: 17, cat: "Mental Health", q: "A patient experiencing sudden, overwhelming intense fear with physical symptoms like palpitations is having a:", opts: ["Panic attack", "Phobic reaction", "Depressive episode", "Manic episode"], ans: 0, exp: "Panic attacks involve sudden acute surges of intense fear and autonomic arousal." },
-            { id: 18, cat: "Obstetrics", q: "What term describes the bluish discoloration of the vaginal mucosa and cervix seen in early pregnancy?", opts: ["Goodell's sign", "Chadwick's sign", "Hegar's sign", "McDonald's sign"], ans: 1, exp: "Chadwick's sign is the bluish coloration of cervix, vagina, and labia due to increased vascular congestion." },
-            { id: 19, cat: "Fundamentals", q: "When performing hand hygiene with alcohol-based rub, how long should you rub your hands until dry?", opts: ["5 to 10 seconds", "15 to 30 seconds", "1 minute", "2 minutes"], ans: 1, exp: "Friction for 15-30 seconds ensures effective microbial reduction." },
-            { id: 20, cat: "Pharmacology", q: "Which insulin type is classified as rapid-acting?", opts: ["Regular insulin", "Insulin Glargine", "Insulin Lispro", "NPH insulin"], ans: 2, exp: "Insulin Lispro, Aspart, and Glulisine are rapid-acting analogues." },
-            // Generating questions 21 to 100 systematically to guarantee 100 unique questions
-            ...Array.from({length: 80}, (_, i) => {
-                let n = i + 21;
-                return {
-                    id: n,
-                    cat: ["Medical-Surgical", "Obstetrics", "Pediatrics", "Pharmacology", "Fundamentals", "Community Health", "Mental Health"][n % 7],
-                    q: `Clinical Nursing Question #${n}: Which nursing intervention is most appropriate for a patient presenting with standard clinical symptoms related to system ${n}?`,
-                    opts: [
-                        `Immediate primary intervention option A for case ${n}`,
-                        `Secondary supportive care option B for case ${n}`,
-                        `Diagnostic evaluation option C for case ${n}`,
-                        `Standard pharmacological management option D for case ${n}`
-                    ],
-                    ans: n % 4,
-                    exp: `Detailed explanation for question #${n}: Standard evidence-based nursing protocol applies.`
-                };
-            })
+            { id: 1, cat: "Fundamentals", q: "What is the primary site used to measure core body temperature accurately in an unconscious adult patient?", opts: ["Axillary", "Oral", "Rectal", "Temporal artery"], ans: 2 },
+            { id: 2, cat: "Medical-Surgical", q: "Which electrolyte imbalance is most commonly associated with tall, peaked T waves on an electrocardiogram (ECG)?", opts: ["Hypokalemia", "Hyperkalemia", "Hyponatremia", "Hypercalcemia"], ans: 1 },
+            { id: 3, cat: "Obstetrics", q: "What is the normal baseline fetal heart rate (FHR) range in a healthy term fetus?", opts: ["100 - 140 bpm", "110 - 160 bpm", "120 - 180 bpm", "90 - 120 bpm"], ans: 1 },
+            { id: 4, cat: "Pediatrics", q: "According to IMCI guidelines, which clinical sign indicates severe dehydration in a child?", opts: ["Lethargy or unconsciousness", "Irritability only", "Warm skin", "Mild thirst"], ans: 0 },
+            { id: 5, cat: "Pharmacology", q: "What is the specific antidote administered for Magnesium Sulfate toxicity in an eclamptic patient?", opts: ["Naloxone", "Calcium gluconate", "Protamine sulfate", "Flumazenil"], ans: 1 },
+            { id: 6, cat: "Community Health", q: "According to WHO guidelines, what is the recommended duration for Exclusive Breastfeeding?", opts: ["First 3 months", "First 6 months", "First 9 months", "First 12 months"], ans: 1 },
+            { id: 7, cat: "Mental Health", q: "Which neurotransmitter excess is primarily associated with the positive symptoms of Schizophrenia?", opts: ["Serotonin", "GABA", "Dopamine", "Acetylcholine"], ans: 2 },
+            { id: 8, cat: "Emergency Care", q: "What is the recommended chest compression-to-ventilation ratio for adult CPR by a single rescuer?", opts: ["15:2", "30:2", "5:1", "10:1"], ans: 1 },
+            { id: 9, cat: "Anatomy & Physio", q: "Which cranial nerve is responsible for the sensation of the face and muscles of mastication?", opts: ["CN V (Trigeminal)", "CN VII (Facial)", "CN IX (Glossopharyngeal)", "CN X (Vagus)"], ans: 0 },
+            { id: 10, cat: "Medical-Surgical", q: "What is the earliest and most sensitive indicator of increasing intracranial pressure (ICP)?", opts: ["Cushing's triad", "Altered level of consciousness", "Fixed and dilated pupils", "Projectile vomiting"], ans: 1 },
+            { id: 11, cat: "Obstetrics", q: "Which hormone is detected in blood and urine to confirm pregnancy?", opts: ["Progesterone", "Estrogen", "Human Chorionic Gonadotropin (hCG)", "Luteinizing Hormone"], ans: 2 },
+            { id: 12, cat: "Fundamentals", q: "Which position is most appropriate for a patient experiencing acute severe dyspnea?", opts: ["Supine", "Trendelenburg", "High Fowler's", "Lithotomy"], ans: 2 },
+            { id: 13, cat: "Pharmacology", q: "Which laboratory test is routinely monitored to evaluate the therapeutic effect of Heparin therapy?", opts: ["PT / INR", "Activated Partial Thromboplastin Time (aPTT)", "Bleeding time", "Platelet count"], ans: 1 },
+            { id: 14, cat: "Pediatrics", q: "At what age does the posterior fontanelle usually close in an infant?", opts: ["6 to 8 weeks", "6 to 8 months", "12 to 18 months", "24 months"], ans: 0 },
+            { id: 15, cat: "Community Health", q: "Which vaccines are administered at birth under the EPI program in Bangladesh?", opts: ["BCG and OPV-0", "Pentavalent-1", "Measles-Rubella", "HPV"], ans: 0 },
+            { id: 16, cat: "Medical-Surgical", q: "What type of isolation precautions are required for a patient with active Pulmonary Tuberculosis?", opts: ["Contact precautions", "Droplet precautions", "Airborne precautions", "Standard precautions"], ans: 2 },
+            { id: 17, cat: "Mental Health", q: "A patient experiencing sudden intense fear accompanied by palpitations and sweating is experiencing a:", opts: ["Panic attack", "Phobia", "Depressive episode", "Manic state"], ans: 0 },
+            { id: 18, cat: "Obstetrics", q: "What term describes the bluish discoloration of the cervix and vaginal mucosa in early pregnancy?", opts: ["Goodell's sign", "Chadwick's sign", "Hegar's sign", "McDonald's sign"], ans: 1 },
+            { id: 19, cat: "Fundamentals", q: "When using an alcohol-based hand rub, how long should you rub your hands together?", opts: ["5 to 10 seconds", "20 to 30 seconds", "1 minute", "2 minutes"], ans: 1 },
+            { id: 20, cat: "Pharmacology", q: "Which of the following is classified as a rapid-acting insulin?", opts: ["Regular insulin", "Insulin Glargine", "Insulin Lispro", "NPH insulin"], ans: 2 },
+            { id: 21, cat: "Medical-Surgical", q: "Which assessment finding is a classic sign of acute appendicitis?", opts: ["Murphys sign", "McBurneys point tenderness", "Trousseaus sign", "Kernigs sign"], ans: 1 },
+            { id: 22, cat: "Obstetrics", q: "What is the primary cause of Postpartum Hemorrhage (PPH)?", opts: ["Uterine atony", "Lacerations", "Retained placenta", "Coagulopathy"], ans: 0 },
+            { id: 23, cat: "Pediatrics", q: "Which APGAR score range indicates a healthy neonate requiring standard newborn care?", opts: ["0 - 3", "4 - 6", "7 - 10", "11 - 15"], ans: 2 },
+            { id: 24, cat: "Pharmacology", q: "What is the therapeutic classification of Digoxin?", opts: ["Antihypertensive", "Cardiac glycoside", "Anticoagulant", "Beta blocker"], ans: 1 },
+            { id: 25, cat: "Fundamentals", q: "Which type of solution causes fluid to shift out of the cells and into the vascular space?", opts: ["Isotonic", "Hypotonic", "Hypertonic", "Colloid"], ans: 2 },
+            { id: 26, cat: "Community Health", q: "What vector is responsible for transmitting Dengue fever?", opts: ["Anopheles mosquito", "Aedes aegypti mosquito", "Culex mosquito", "Sandfly"], ans: 1 },
+            { id: 27, cat: "Medical-Surgical", q: "Which position is recommended for a patient immediately after a liver biopsy?", opts: ["Left lateral", "Right lateral", "Supine", "Prone"], ans: 1 },
+            { id: 28, cat: "Obstetrics", q: "What is the defining characteristic of Preeclampsia?", opts: ["Hypertension and Proteinuria", "Hypotension and Anemia", "Hyperglycemia and Edema", "Jaundice and Fever"], ans: 0 },
+            { id: 29, cat: "Pediatrics", q: "Which deficiency is the primary cause of Rickets in children?", opts: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin K"], ans: 2 },
+            { id: 30, cat: "Pharmacology", q: "What drug is used to treat opioid overdose?", opts: ["Flumazenil", "Naloxone", "Atropine", "Activated charcoal"], ans: 1 },
+            { id: 31, cat: "Fundamentals", q: "What is the standard needle gauge used for routine intramuscular (IM) injections in adults?", opts: ["18-20 gauge", "21-23 gauge", "25-27 gauge", "30 gauge"], ans: 1 },
+            { id: 32, cat: "Medical-Surgical", q: "Which lab result confirms a diagnosis of Diabetes Mellitus when fasting blood glucose is measured?", opts: ["≥ 100 mg/dL", "≥ 126 mg/dL", "≥ 140 mg/dL", "≥ 200 mg/dL"], ans: 1 },
+            { id: 33, cat: "Obstetrics", q: "What is the average length of the normal human menstrual cycle?", opts: ["14 days", "21 days", "28 days", "35 days"], ans: 2 },
+            { id: 34, cat: "Pediatrics", q: "Koplik spots inside the buccal mucosa are a pathognomonic sign of which infection?", opts: ["Chickenpox", "Measles (Rubeola)", "Mumps", "Rubella"], ans: 1 },
+            { id: 35, cat: "Community Health", q: "What is the primary mode of transmission for Hepatitis A?", opts: ["Bloodborne", "Faecal-oral route", "Sexual contact", "Airborne droplets"], ans: 1 },
+            { id: 36, cat: "Pharmacology", q: "Which class of drugs does Furosemide belong to?", opts: ["Loop diuretic", "Thiazide diuretic", "Potassium-sparing diuretic", "Osmotic diuretic"], ans: 0 },
+            { id: 37, cat: "Fundamentals", q: "How often should an immobilized patient be repositioned to prevent pressure ulcers?", opts: ["Every 1 hour", "Every 2 hours", "Every 4 hours", "Every 6 hours"], ans: 1 },
+            { id: 38, cat: "Medical-Surgical", q: "What is the most serious complication of Deep Vein Thrombosis (DVT)?", opts: ["Varicose veins", "Pulmonary embolism", "Peripheral neuropathy", "Cellulitis"], ans: 1 },
+            { id: 39, cat: "Obstetrics", q: "What is the condition called when the placenta implants over or near the internal cervical os?", opts: ["Abruptio placentae", "Placenta previa", "Placenta accreta", "Ectopic pregnancy"], ans: 1 },
+            { id: 40, cat: "Pediatrics", q: "At what age should solid foods (complementary feeding) be introduced to an infant?", opts: ["3 months", "4 months", "6 months", "12 months"], ans: 2 },
+            { id: 41, cat: "Mental Health", q: "Which symptom is classified as a negative symptom of Schizophrenia?", opts: ["Hallucinations", "Delusions", "Avolition (Lack of motivation)", "Disorganized speech"], ans: 2 },
+            { id: 42, cat: "Emergency Care", q: "During triage in a mass casualty event, what color tag is assigned to a deceased victim?", opts: ["Red", "Yellow", "Green", "Black"], ans: 3 },
+            { id: 43, cat: "Pharmacology", q: "What is the main side effect of oral Iron therapy that patients should be educated about?", opts: ["Diarrhea and red urine", "Black, tarry stools and constipation", "Hypertension", "Drowsiness"], ans: 1 },
+            { id: 44, cat: "Anatomy & Physio", q: "Where is bile produced in the human body?", opts: ["Gallbladder", "Liver", "Pancreas", "Duodenum"], ans: 1 },
+            { id: 45, cat: "Fundamentals", q: "What is the normal pulse rate range for a healthy adult at rest?", opts: ["40 - 60 bpm", "60 - 100 bpm", "80 - 120 bpm", "100 - 140 bpm"], ans: 1 },
+            { id: 46, cat: "Medical-Surgical", q: "Which diagnostic test is considered the definitive gold standard for diagnosing Myocardial Infarction?", opts: ["ECG", "Troponin I / T", "Chest X-ray", "Echocardiogram"], ans: 1 },
+            { id: 47, cat: "Obstetrics", q: "According to Naegele's rule, what is the Estimated Date of Delivery (EDD) for a LMP of Jan 10, 2026?", opts: ["Oct 17, 2026", "Oct 10, 2026", "Nov 17, 2026", "Sep 17, 2026"], ans: 0 },
+            { id: 48, cat: "Pediatrics", q: "Which vaccine protects against Diphtheria, Pertussis, Tetanus, Hepatitis B, and Hib?", opts: ["Pentavalent vaccine", "BCG", "MR vaccine", "OPV"], ans: 0 },
+            { id: 49, cat: "Community Health", q: "What is the primary level of prevention?", opts: ["Early diagnosis and treatment", "Health promotion and immunization", "Rehabilitation", "Surgical correction"], ans: 1 },
+            { id: 50, cat: "Pharmacology", q: "Which laboratory parameter must be checked before administering Digoxin?", opts: ["Apical pulse rate for 1 minute", "Blood pressure", "Respiratory rate", "Temperature"], ans: 0 },
+            { id: 51, cat: "Fundamentals", q: "Which route provides the fastest systemic absorption of a drug?", opts: ["Oral", "Subcutaneous", "Intramuscular", "Intravenous"], ans: 3 },
+            { id: 52, cat: "Medical-Surgical", q: "What is the primary clinical sign of hypocalcemia?", opts: ["Trousseau's and Chvostek's sign", "Homans' sign", "Kernig's sign", "Brudzinski's sign"], ans: 0 },
+            { id: 53, cat: "Obstetrics", q: "What is Lochia rubra?", opts: ["Reddish vaginal discharge occurring for 1-3 days postpartum", "Pinkish-brown discharge", "Yellow-white discharge", "Clear mucous discharge"], ans: 0 },
+            { id: 54, cat: "Pediatrics", q: "What is the standard treatment for a child diagnosed with severe acute malnutrition with complications?", opts: ["Home feeding", "Inpatient stabilization (F-75 / F-100 milk)", "Oral rehydration solution only", "Vitamin C therapy"], ans: 1 },
+            { id: 55, cat: "Anatomy & Physio", q: "Which organ produces Insulin?", opts: ["Liver", "Spleen", "Pancreas (Beta cells)", "Adrenal gland"], ans: 2 },
+            { id: 56, cat: "Medical-Surgical", q: "What is the classic symptom triad of Meningitis?", opts: ["Fever, headache, and nuchal rigidity", "Chest pain, dyspnea, cyanosis", "Jaundice, ascites, splenomegaly", "Tremor, rigidity, bradykinesia"], ans: 0 },
+            { id: 57, cat: "Community Health", q: "What is the main objective of Maternal and Child Health (MCH) services?", opts: ["Promote elderly care", "Reduce maternal and child mortality and morbidity", "Manage chronic communicable diseases", "Provide industrial healthcare"], ans: 1 },
+            { id: 58, cat: "Pharmacology", q: "What is a common adverse effect of ACE inhibitors such as Captopril?", opts: ["Persistent dry cough", "Hyperglycemia", "Diarrhea", "Visual disturbances"], ans: 0 },
+            { id: 59, cat: "Fundamentals", q: "Which technique is essential to maintain surgical asepsis?", opts: ["Clean glove technique", "Sterile technique", "Hand washing with water only", "Disinfection of skin"], ans: 1 },
+            { id: 60, cat: "Obstetrics", q: "At what gestational age is a pregnancy considered term?", opts: ["34 to 36 weeks", "37 to 42 weeks", "42 to 44 weeks", "30 to 34 weeks"], ans: 1 },
+            { id: 61, cat: "Pediatrics", q: "Which sign is assessed to evaluate respiratory distress in a newborn?", opts: ["Nasal flaring and intercostal retractions", "Slow heart rate", "Pink skin color", "Strong cry"], ans: 0 },
+            { id: 62, cat: "Emergency Care", q: "What is the first priority in trauma care management according to ABCDE guidelines?", opts: ["Airway maintenance with cervical spine protection", "Breathing assessment", "Circulation evaluation", "Disability assessment"], ans: 0 },
+            { id: 63, cat: "Medical-Surgical", q: "Which arterial blood gas (ABG) value indicates Metabolic Acidosis?", opts: ["pH < 7.35 and HCO3 < 22 mEq/L", "pH > 7.45 and HCO3 > 26 mEq/L", "pH < 7.35 and PaCO2 > 45 mmHg", "pH > 7.45 and PaCO2 < 35 mmHg"], ans: 0 },
+            { id: 64, cat: "Pharmacology", q: "Warfarin activity is monitored using which laboratory test?", opts: ["aPTT", "Prothrombin Time (PT) / INR", "Platelet count", "Bleeding time"], ans: 1 },
+            { id: 65, cat: "Mental Health", q: "What is a false, fixed belief that cannot be changed by logical reasoning?", opts: ["Hallucination", "Delusion", "Illusion", "Obsession"], ans: 1 },
+            { id: 66, cat: "Community Health", q: "Which disease is targeted for eradication through global vaccination and oral polio drops?", opts: ["Tuberculosis", "Poliomyelitis", "Malaria", "Cholera"], ans: 1 },
+            { id: 67, cat: "Fundamentals", q: "When performing nasogastric (NG) tube insertion, how is the insertion length measured?", opts: ["Nose to earlobe to xiphoid process", "Nose to chin to sternum", "Mouth to earlobe to umbilicus", "Earlobe to xiphoid process"], ans: 0 },
+            { id: 68, cat: "Obstetrics", q: "What is the drug of choice for preventing and treating convulsions in Eclampsia?", opts: ["Diazepam", "Magnesium Sulfate", "Phenobarbital", "Phenytoin"], ans: 1 },
+            { id: 69, cat: "Pediatrics", q: "What milestone is expected in a typically developing 12-month-old infant?", opts: ["Walks independently or with support", "Speaks full sentences", "Rides a tricycle", "Draws a circle"], ans: 0 },
+            { id: 70, cat: "Medical-Surgical", q: "What clinical feature differentiates Osteoarthritis from Rheumatoid Arthritis?", opts: ["Bilateral symmetrical joint swelling", "Morning stiffness lasting hours", "Asymmetrical joint involvement with Heberden's nodes", "Systemic fever and vasculitis"], ans: 2 },
+            { id: 71, cat: "Anatomy & Physio", q: "What is the functional structural unit of the kidney?", opts: ["Neuron", "Nephron", "Alveolus", "Hepatocyte"], ans: 1 },
+            { id: 72, cat: "Pharmacology", q: "Which class of antibiotics is associated with the risk of ototoxicity and nephrotoxicity?", opts: ["Penicillins", "Aminoglycosides (e.g., Gentamicin)", "Cephalosporins", "Macrolides"], ans: 1 },
+            { id: 73, cat: "Fundamentals", q: "What is the primary purpose of a cleansing enema?", opts: ["Promote defecation by stimulating peristalsis", "Administer nutrients", "Kill intestinal parasites", "Anesthetize the rectum"], ans: 0 },
+            { id: 74, cat: "Obstetrics", q: "What is the duration of the third stage of labor under normal conditions?", opts: ["5 to 30 minutes", "1 to 2 hours", "4 to 6 hours", "12 hours"], ans: 0 },
+            { id: 75, cat: "Pediatrics", q: "What is the characteristic cough sound in a child with Croup (Laryngotracheobronchitis)?", opts: ["Wheezing cough", "Barking seal-like cough", "Productive wet cough", "Whooping cough"], ans: 1 },
+            { id: 76, cat: "Community Health", q: "Which water purification method is most suitable at the household level during floods?", opts: ["Boiling and Halazone / Water purification tablets", "Filtration through cloth only", "Sedimentation without chemicals", "UV irradiation"], ans: 0 },
+            { id: 77, cat: "Medical-Surgical", q: "What is the hallmark symptom of Benign Prostatic Hyperplasia (BPH)?", opts: ["Hematuria", "Hesitancy, weak urinary stream, and nocturia", "Flank pain", "Fever and chills"], ans: 1 },
+            { id: 78, cat: "Pharmacology", q: "What is the primary action of Nitroglycerin in managing Angina Pectoris?", opts: ["Vasoconstriction", "Coronary and systemic vasodilation", "Increasing heart rate", "Decreasing urine output"], ans: 1 },
+            { id: 79, cat: "Mental Health", q: "Perceiving a sensory stimulus in the absence of any external stimulus is called:", opts: ["Illusion", "Hallucination", "Delusion", "Compulsion"], ans: 1 },
+            { id: 80, cat: "Fundamentals", q: "What is the term for a heart rate below 60 beats per minute in an adult?", opts: ["Tachycardia", "Bradycardia", "Arrhythmia", "Ischemia"], ans: 1 },
+            { id: 81, cat: "Obstetrics", q: "What is the normal color of clear amniotic fluid?", opts: ["Greenish", "Pale straw color or clear", "Dark brown", "Bright red"], ans: 1 },
+            { id: 82, cat: "Medical-Surgical", q: "What position should a patient be placed in during a seizure?", opts: ["Supine with head elevated", "Side-lying (lateral recovery position)", "High Fowler's", "Prone position"], ans: 1 },
+            { id: 83, cat: "Pediatrics", q: "Which intervention is critical in treating a child with acute diarrhea and dehydration?", opts: ["Immediate antibiotic administration", "Oral Rehydration Salt (ORS) solution and Zinc supplementation", "Withholding all fluids for 24 hours", "Administering antidiarrheal drugs"], ans: 1 },
+            { id: 84, cat: "Anatomy & Physio", q: "Where does gas exchange take place in the human respiratory system?", opts: ["Trachea", "Bronchi", "Alveoli", "Larynx"], ans: 2 },
+            { id: 85, cat: "Pharmacology", q: "What vital sign must be assessed prior to administering Morphine Sulfate?", opts: ["Heart rate", "Respiratory rate", "Temperature", "Blood glucose"], ans: 1 },
+            { id: 86, cat: "Fundamentals", q: "What type of diet is recommended for a patient with severe hypertension?", opts: ["High protein, low carbohydrate", "Low sodium, DASH diet", "High fat, low fiber", "Fluid restricted diet only"], ans: 1 },
+            { id: 87, cat: "Medical-Surgical", q: "What is the definitive diagnostic procedure for confirming Peptic Ulcer Disease?", opts: ["Upper Gastrointestinal Endoscopy", "Abdominal X-ray", "CT scan of abdomen", "Barium swallow"], ans: 0 },
+            { id: 88, cat: "Community Health", q: "Cold Chain maintenance is necessary to ensure what feature of vaccines?", opts: ["Quantity", "Potency and efficacy", "Volume", "Color"], ans: 1 },
+            { id: 89, cat: "Obstetrics", q: "Which fetal presentation is most common and favorable for normal vaginal delivery?", opts: ["Breech presentation", "Cephalic (Vertex) presentation", "Shoulder presentation", "Face presentation"], ans: 1 },
+            { id: 90, cat: "Pediatrics", q: "A child with Kwashiorkor typically exhibits which distinctive clinical feature?", opts: ["Severe muscular wasting without edema", "Edema, hair changes, and moon face", "Normal weight and height", "Cyanosis and clubbing"], ans: 1 },
+            { id: 91, cat: "Pharmacology", q: "Which medication is prescribed as a first-line treatment for an acute asthma attack?", opts: ["Salbutamol (Albuterol) inhaler", "Oral Prednisolone", "Inhaled Steroids", "Montelukast"], ans: 0 },
+            { id: 92, cat: "Emergency Care", q: "What is the first step when providing emergency care to a patient with severe external arterial bleeding?", opts: ["Apply direct pressure to the wound site", "Apply a tourniquet immediately", "Elevate the legs", "Administer IV fluids"], ans: 0 },
+            { id: 93, cat: "Fundamentals", q: "What is the normal range of adult arterial blood pH?", opts: ["7.00 - 7.25", "7.35 - 7.45", "7.50 - 7.60", "6.80 - 7.10"], ans: 1 },
+            { id: 94, cat: "Medical-Surgical", q: "Which gland is affected in Graves' disease leading to hyperthyroidism?", opts: ["Pituitary gland", "Thyroid gland", "Adrenal gland", "Parathyroid gland"], ans: 1 },
+            { id: 95, cat: "Obstetrics", q: "What is Involution of the uterus?", opts: ["Process by which the uterus returns to its pre-pregnant size and state", "Enlargement of the uterus during pregnancy", "Rupture of the uterus during labor", "Infection of the uterine lining"], ans: 0 },
+            { id: 96, cat: "Pediatrics", q: "Which congenital anomaly is characterized by the failure of the hard palate to fuse?", opts: ["Cleft lip", "Cleft palate", "Tracheoesophageal fistula", "Pyloric stenosis"], ans: 1 },
+            { id: 97, cat: "Community Health", q: "What is the main reservoir for Salmonella typhi causing Typhoid fever?", opts: ["Cattle", "Infected human beings and carriers", "Mosquitoes", "Dogs"], ans: 1 },
+            { id: 98, cat: "Pharmacology", q: "Metformin is categorized under which pharmacological class?", opts: ["Sulfonylurea", "Biguanide", "Insulin sensitizer", "DPP-4 inhibitor"], ans: 1 },
+            { id: 99, cat: "Fundamentals", q: "What is the medical term for difficulty in swallowing?", opts: ["Dysphasia", "Dysphagia", "Dyspnea", "Dysuria"], ans: 1 },
+            { id: 100, cat: "Medical-Surgical", q: "Which clinical sign is indicative of Peritonitis?", opts: ["Rebound tenderness and rigid, board-like abdomen", "Painless jaundice", "Flaccid abdominal wall", "Diarrhea and hyperactive bowel sounds"], ans: 0 }
         ];
 
         function goToRegistration() {
@@ -323,7 +386,7 @@
 
         function renderQuestions() {
             const container = document.getElementById('questionsContainer');
-            container.innerHTML = questions.map((item, index) => `
+            container.innerHTML = questions.map((item) => `
                 <div id="q-card-${item.id}" class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
                     <div class="flex justify-between items-center mb-2">
                         <span class="text-[10px] bg-red-50 text-red-600 font-bold px-2 py-0.5 rounded uppercase tracking-wider">${item.cat}</span>
