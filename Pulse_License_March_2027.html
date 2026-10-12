@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#b51224">
+<title>Pulse Nursing Coaching | Admission Interest Form</title>
+<style>
+:root{--red:#b51224;--red-dark:#790c19;--red-deep:#4e0811;--red-soft:#fff0f1;--gold:#ffd45a;--ink:#202124;--muted:#6b7280;--line:#e4e5e7;--bg:#ffffff;--white:#fff;--green:#176b42;--green-soft:#eefaf2;--danger:#a71924}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali","Segoe UI",sans-serif;line-height:1.45}
+.wrap{width:min(100%,690px);margin:0 auto;padding:10px 12px 32px}
+.top{display:flex;align-items:center;gap:11px;background:var(--red);color:#fff;border-radius:12px;padding:11px 13px;box-shadow:0 2px 8px #2021240c}
+.logo{display:block;width:54px;height:54px;object-fit:contain;flex:0 0 54px;background:#fff;border-radius:12px;padding:4px}
+.brandblock{min-width:0;flex:1}.brand{font-size:clamp(14px,3.7vw,19px);font-weight:900;line-height:1.2;letter-spacing:.1px}.brandSub{font-size:11px;color:#ffe9ec;margin-top:4px}.topBadge{align-self:center;background:var(--gold);color:#4d1419;font-size:9px;font-weight:900;letter-spacing:.35px;border-radius:7px;padding:6px 7px;text-align:center;max-width:94px;line-height:1.25}
+.hero{padding:17px 4px 4px}.eyebrow{color:var(--red);font-weight:900;font-size:10px;letter-spacing:1px;text-transform:uppercase}.hero h1{font-size:clamp(21px,5vw,27px);line-height:1.2;margin:5px 0 6px;font-weight:900;letter-spacing:-.35px}.hero p{font-size:12px;color:var(--muted);margin:0}.examPill{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #f0c7cc;color:#8f1421;border-radius:99px;padding:6px 10px;font-size:11px;font-weight:800;margin-top:10px}
+.progress{display:flex;gap:5px;margin:14px 2px 10px}.progress span{height:4px;border-radius:10px;flex:1;background:#e4dadd}.progress span.on{background:var(--red)}
+.card{background:#fff;border:1px solid #e7e7e9;border-radius:12px;padding:17px 15px;margin-top:10px;box-shadow:none}
+.sectionHead{display:flex;align-items:center;gap:9px;margin:0 0 15px;font-size:15px;font-weight:900}.num{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:var(--red-soft);color:var(--red);font-size:12px;flex-shrink:0}
+.requiredNote{font-size:11px;color:var(--muted);margin:-4px 0 14px}.required{color:var(--danger)}.field{margin:0 0 15px}.field:last-child{margin-bottom:0}label,.legend{display:block;font-weight:800;font-size:12px;margin:0 0 7px}.hint{font-size:10px;color:var(--muted);margin-top:5px}
+input,select,textarea{width:100%;min-height:47px;border:1px solid #d8dade;border-radius:10px;background:#fff;padding:11px 12px;font:inherit;font-size:14px;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}textarea{min-height:82px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px #b5122416}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.choices.three{grid-template-columns:repeat(3,minmax(0,1fr))}.choice{position:relative;margin:0}.choice input{position:absolute;opacity:0;inset:0;min-height:0;width:100%;cursor:pointer}.choice span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:45px;border:1px solid #dedfe2;border-radius:10px;padding:9px 6px;font-size:12px;font-weight:800;background:#fff;cursor:pointer;line-height:1.25}.choice input:checked+span{border-color:var(--red);background:var(--red-soft);color:var(--red);box-shadow:inset 0 0 0 1px var(--red)}.choice input:focus-visible+span{outline:3px solid #e9a5ad}.hidden{display:none!important}
+.actions{display:grid;gap:9px;margin-top:15px}.btn{border:0;border-radius:11px;min-height:48px;padding:12px 15px;font:inherit;font-weight:900;font-size:14px;cursor:pointer}.primary{background:var(--red);color:#fff;box-shadow:0 6px 14px #b5122425}.primary:active{background:var(--red-dark)}.secondary{background:#fff;color:var(--red);border:1px solid #e7b8be}.btn:disabled{opacity:.6;cursor:wait}.privacy{font-size:10px;color:var(--muted);text-align:center;margin:10px 7px 0}
+.status{display:none;border-radius:11px;padding:12px 13px;margin-top:13px;font-size:12px;overflow-wrap:anywhere}.status.error{display:block;background:#fff0f0;color:#95131f;border:1px solid #f3c8cc}.status.info{display:block;background:#fff8e6;color:#73530b;border:1px solid #f1dfaa}.status.ok{display:block;background:var(--green-soft);color:#175d39;border:1px solid #c7e7d2}
+.success{display:none;margin-top:15px}.success.show{display:block}.successBox{border:1px solid #bfe4cc;background:var(--green-soft);border-radius:15px;padding:18px 14px;text-align:center}.check{margin:0 auto 8px;width:43px;height:43px;border-radius:50%;background:#d3f2dd;color:#176b42;display:grid;place-items:center;font-size:23px;font-weight:900}.successBox h2{font-size:19px;margin:0 0 6px;color:#145c38}.successBox p{font-size:12px;margin:0;color:#436451}.serial{font-size:31px;letter-spacing:1.5px;font-weight:950;color:var(--red);margin:12px 0 3px}
+.receipt{background:#fff;border:1px solid #e1e2e5;border-radius:14px;margin-top:12px;padding:15px}.receiptHead{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:11px}.receiptLogo{width:47px;height:47px;object-fit:contain;border:1px solid #eee;border-radius:9px;padding:2px}.receiptBrand{font-size:14px;font-weight:950;color:var(--red-dark)}.receiptSub{font-size:10px;color:var(--muted)}.receiptTitle{text-align:center;font-weight:950;font-size:15px;margin:8px 0 3px}.receiptMeta{text-align:center;font-size:10px;color:var(--muted);margin-bottom:13px}.receiptGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.datum{border:1px solid #ececef;border-radius:9px;padding:8px 9px;min-width:0}.datum.full{grid-column:1/-1}.datum small{display:block;font-size:9px;color:var(--muted);margin-bottom:3px}.datum strong{display:block;font-size:12px;overflow-wrap:anywhere}.receiptFoot{font-size:10px;color:var(--muted);border-top:1px solid var(--line);margin-top:12px;padding-top:9px;text-align:center}
+.foot{text-align:center;color:#8a8e95;font-size:10px;padding:17px 5px 0}.receiptActions .btn{width:100%}
+@media(min-width:520px){.wrap{padding:16px 15px 36px}.top{padding:12px 16px}.logo{width:58px;height:58px;flex-basis:58px}.card{padding:20px}.actions{grid-template-columns:1fr 1fr}.actions .primary{grid-column:1/-1}}
+@media(max-width:360px){.top{gap:8px;padding:9px}.logo{width:46px;height:46px;flex-basis:46px}.brand{font-size:13px}.brandSub{font-size:10px}.topBadge{font-size:8px;padding:5px;max-width:76px}.choices.three{grid-template-columns:1fr}.receiptGrid{grid-template-columns:1fr 1fr}}
+@media print{body{background:#fff}.wrap{padding:0;width:100%;max-width:none}.top,.hero,.progress,#admissionForm,.foot,.successBox,.receiptActions{display:none!important}#success{display:block!important;margin:0}.receipt{border:1px solid #bbb;box-shadow:none;margin:0;padding:20px}.receiptGrid{grid-template-columns:1fr 1fr}.receiptFoot{margin-top:16px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="top">
+  <img class="logo" src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Pulse Nursing Coaching logo">
+  <div class="brandblock">
+    <div class="brand">PULSE NURSING COACHING</div>
+    <div class="brandSub">License &amp; Job Coaching</div>
+  </div>
+  <div class="topBadge">PAID BATCH<br>ADMISSION</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Admission Interest Form</div>
+  <h1>Nursing License Preparation</h1>
+  <p>ভর্তি-আগ্রহ ফর্মটি পূরণ করুন। তথ্য যাচাই করে আমাদের টিম যোগাযোগ করবে।</p>
+  <div class="examPill">● Target Exam: March 2027</div>
+</section>
+<div class="progress" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+
+<form id="admissionForm" novalidate>
+  <section class="card">
+    <h2 class="sectionHead"><span class="num">01</span> ব্যক্তিগত তথ্য</h2>
+    <p class="requiredNote"><span class="required">*</span> চিহ্নিত ঘরগুলো পূরণ করা বাধ্যতামূলক।</p>
+    <div class="field">
+      <label for="name">শিক্ষার্থীর নাম (Name) <span class="required">*</span></label>
+      <input id="name" name="name" autocomplete="name" maxlength="100" placeholder="আপনার পূর্ণ নাম লিখুন" required>
+    </div>
+    <div class="field">
+      <span class="legend">Course / কোর্স <span class="required">*</span></span>
+      <div class="choices three">
+        <label class="choice"><input type="radio" name="course" value="Diploma" required><span>Diploma</span></label>
+        <label class="choice"><input type="radio" name="course" value="BSc" required><span>BSc</span></label>
+        <label class="choice"><input type="radio" name="course" value="Midwifery" required><span>Midwifery</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <span class="legend">কোন ব্যাচে ভর্তি হতে চান? <span class="required">*</span></span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="batch" value="Full Course" required><span>Full Course</span></label>
+        <label class="choice"><input type="radio" name="batch" value="Exam Batch" required><span>Exam Batch</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="phone">মোবাইল নম্বর (Phone Number) <span class="required">*</span></label>
+      <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="11" minlength="11" pattern="01[3-9][0-9]{8}" placeholder="01XXXXXXXXX" required>
+      <div class="hint">বাংলাদেশি ১১ ডিজিটের বৈধ মোবাইল নম্বর লিখুন।</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="sectionHead"><span class="num">02</span> লাইসেন্স পরীক্ষার তথ্য</h2>
+    <div class="field">
+      <span class="legend">বিগত কোনো লাইসেন্স পরীক্ষায় অংশগ্রহণ করেছেন? <span class="required">*</span></span>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="examStatus" value="New Student" required><span>New Student</span></label>
+        <label class="choice"><input type="radio" name="examStatus" value="Failed Student" required><span>Failed Student</span></label>
+      </div>
+    </div>
+    <div class="field hidden" id="attemptsField">
+      <span class="legend">আপনি কয়বার লাইসেন্স পরীক্ষা দিয়েছেন? <span class="required">*</span></span>
+      <div class="choices three">
+        <label class="choice"><input type="radio" name="attempts" value="১ বার"><span>১ বার</span></label>
+        <label class="choice"><input type="radio" name="attempts" value="২ বার"><span>২ বার</span></label>
+        <label class="choice"><input type="radio" name="attempts" value="একাধিক বার"><span>একাধিক বার</span></label>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 class="sectionHead"><span class="num">03</span> ঠিকানা</h2>
+    <div class="field">
+      <label for="district">জেলা (District) <span class="required">*</span></label>
+      <input id="district" name="district" autocomplete="address-level1" maxlength="80" placeholder="আপনার জেলার নাম" required>
+    </div>
+    <div class="field">
+      <label for="upazila">উপজেলা (Upazila) <span class="required">*</span></label>
+      <input id="upazila" name="upazila" autocomplete="address-level2" maxlength="80" placeholder="আপনার উপজেলা / থানা" required>
+    </div>
+    <div class="field">
+      <label for="address">ঠিকানা (Address) <span class="required">*</span></label>
+      <textarea id="address" name="address" maxlength="300" autocomplete="street-address" placeholder="গ্রাম/মহল্লা, রোড বা বিস্তারিত ঠিকানা" required></textarea>
+    </div>
+  </section>
+
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+  <button id="retryCheckBtn" class="btn secondary hidden" type="button" style="width:100%;margin-top:10px">আগের অনুরোধের অবস্থা যাচাই করুন</button>
+  <div class="actions"><button id="submitBtn" class="btn primary" type="submit">ফর্ম জমা দিন&nbsp; →</button></div>
+  <p class="privacy">আপনার তথ্য ভর্তি-সংক্রান্ত যোগাযোগের জন্য ব্যবহার করা হবে।</p>
+</form>
+
+<section id="success" class="success" aria-live="polite">
+  <div class="successBox">
+    <div class="check">✓</div>
+    <h2>আপনার ভর্তি ফর্ম জমা হয়েছে!</h2>
+    <p>শিগগিরই আমাদের একজন মেন্টর আপনার সাথে যোগাযোগ করবেন।</p>
+    <div id="serial" class="serial">—</div>
+    <p>আপনার সিরিয়াল নম্বরটি সংরক্ষণ করে রাখুন।</p>
+  </div>
+  <article class="receipt" id="receipt">
+    <div class="receiptHead">
+      <img class="receiptLogo" src="https://i.ibb.co.com/Ld7snkkP/logo.png" alt="Pulse logo">
+      <div><div class="receiptBrand">PULSE NURSING COACHING</div><div class="receiptSub">License &amp; Job Coaching</div></div>
+    </div>
+    <div class="receiptTitle">ADMISSION INTEREST FORM</div>
+    <div class="receiptMeta">Nursing License Exam Preparation · March 2027</div>
+    <div class="receiptGrid" id="receiptGrid"></div>
+    <div class="receiptFoot">নার্স গড়ার প্রত্যয়ে, স্বপ্ন পূরণের অঙ্গিকার।<br>এটি ভর্তি-আগ্রহের রেকর্ড; চূড়ান্ত ভর্তি নিশ্চিতকরণ নয়।</div>
+  </article>
+  <div class="actions receiptActions">
+    <button id="downloadBtn" class="btn primary" type="button">ফর্ম ডাউনলোড করুন (PDF)</button>
+    <button id="imageBtn" class="btn secondary" type="button">ছবি হিসেবে ডাউনলোড করুন (PNG)</button>
+    <button id="newBtn" class="btn secondary" type="button">নতুন ফর্ম পূরণ করুন</button>
+  </div>
+  <p class="privacy receiptActions">PDF ডাউনলোড বাটনে ক্লিক করে Print উইন্ডোতে “Save as PDF” নির্বাচন করুন।</p>
+</section>
+<footer class="foot">© Pulse Nursing License &amp; Job Coaching · March 2027</footer>
+</main>
+<iframe name="submitSink" id="submitSink" title="Submission response" style="display:none"></iframe>
+
+<script>
+(() => {
+  'use strict';
+  const API_URL = 'https://script.google.com/macros/s/AKfycbzwFBAO3dQVsGgiT6Xj8FGUX67CIc4BhemtF3V6Y9GYxiu8j35F11c1w5trOuKayRdh/exec';
+  const LOGO_URL = 'https://i.ibb.co.com/Ld7snkkP/logo.png';
+  const form = document.getElementById('admissionForm');
+  const statusBox = document.getElementById('status');
+  const submitBtn = document.getElementById('submitBtn');
+  const attemptsField = document.getElementById('attemptsField');
+  const success = document.getElementById('success');
+  const serialBox = document.getElementById('serial');
+  const receiptGrid = document.getElementById('receiptGrid');
+  const sink = document.getElementById('submitSink');
+  let latestStudent = null;
+  let activeRequestId = '';
+  let pending = false;
+  let pollTimer = null;
+  let pollCount = 0;
+  let submissionStartedAt = 0;
+  let jsonpScript = null;
+
+  const selected = name => form.querySelector(`input[name="${name}"]:checked`)?.value || '';
+  const setStatus = (message, kind='info') => { statusBox.className = 'status ' + kind; statusBox.textContent = message; };
+  const clearStatus = () => { statusBox.className = 'status'; statusBox.textContent = ''; };
+  const setBusy = busy => {
+    submitBtn.disabled = busy;
+    submitBtn.textContent = busy ? 'জমা দেওয়া হচ্ছে…' : 'ফর্ম জমা দিন →';
+  };
+  const makeRequestId = () => 'pulse_' + Date.now().toString(36) + '_' + cryptoRandom();
+  function cryptoRandom() {
+    try { const a = new Uint32Array(2); crypto.getRandomValues(a); return a[0].toString(36) + a[1].toString(36); }
+    catch (_) { return Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2); }
+  }
+
+  form.querySelectorAll('input[name="examStatus"]').forEach(el => el.addEventListener('change', () => {
+    const failed = selected('examStatus') === 'Failed Student';
+    attemptsField.classList.toggle('hidden', !failed);
+    form.querySelectorAll('input[name="attempts"]').forEach(input => { input.required = failed; if (!failed) input.checked = false; });
+  }));
+  document.getElementById('phone').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 11); });
+
+  function collectData() {
+    return {
+      name: document.getElementById('name').value.trim(), course: selected('course'), batch: selected('batch'),
+      phone: document.getElementById('phone').value.trim(), examStatus: selected('examStatus'), attempts: selected('attempts'),
+      district: document.getElementById('district').value.trim(), upazila: document.getElementById('upazila').value.trim(),
+      address: document.getElementById('address').value.trim()
+    };
+  }
+  function validate(d) {
+    if (!d.name) return 'আপনার নাম লিখুন।';
+    if (!d.course) return 'কোর্স নির্বাচন করুন।';
+    if (!d.batch) return 'ব্যাচ নির্বাচন করুন।';
+    if (!/^01[3-9]\d{8}$/.test(d.phone)) return 'সঠিক ১১ ডিজিটের বাংলাদেশি মোবাইল নম্বর লিখুন।';
+    if (!d.examStatus) return 'লাইসেন্স পরীক্ষার অবস্থা নির্বাচন করুন।';
+    if (d.examStatus === 'Failed Student' && !d.attempts) return 'কয়বার পরীক্ষা দিয়েছেন তা নির্বাচন করুন।';
+    if (!d.district || !d.upazila || !d.address) return 'জেলা, উপজেলা ও ঠিকানার সব ঘর পূরণ করুন।';
+    return '';
+  }
+  function makeReceipt(student, serial, timestamp='') {
+    const rows = [
+      ['Serial Number / সিরিয়াল', serial], ['Name / নাম', student.name], ['Course / কোর্স', student.course],
+      ['Batch / ব্যাচ', student.batch], ['Phone Number / ফোন', student.phone], ['Previous Exam Status', student.examStatus],
+      ['Number of Attempts / পরীক্ষার সংখ্যা', student.examStatus === 'Failed Student' ? student.attempts : 'প্রযোজ্য নয়'],
+      ['District / জেলা', student.district], ['Upazila / উপজেলা', student.upazila], ['Address / ঠিকানা', student.address],
+      ['Exam Target', student.examTarget || 'March 2027'], ['Submission Time', timestamp || 'সফলভাবে জমা হয়েছে']
+    ];
+    receiptGrid.replaceChildren();
+    rows.forEach(([label, value]) => {
+      const div = document.createElement('div'); div.className = 'datum' + (label.startsWith('Address') ? ' full' : '');
+      const small = document.createElement('small'); small.textContent = label;
+      const strong = document.createElement('strong'); strong.textContent = value || '—';
+      div.append(small, strong); receiptGrid.append(div);
+    });
+  }
+  function showSuccess(result) {
+    pending = false; clearInterval(pollTimer); pollTimer = null; removeJsonp(); setBusy(false); clearStatus();
+    if (!result || !result.success || !result.serial || !result.student) {
+      setStatus((result && result.message) || 'সার্ভার থেকে নিশ্চিত ফলাফল পাওয়া যায়নি। অনুগ্রহ করে এখনই আবার জমা দেবেন না; কিছুক্ষণ পর এই অনুরোধের অবস্থা যাচাই করুন।', 'error');
+      return;
+    }
+    latestStudent = result.student; serialBox.textContent = result.serial;
+    makeReceipt(result.student, result.serial, result.timestamp || '');
+    form.style.display = 'none'; success.classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function removeJsonp() { if (jsonpScript) { jsonpScript.remove(); jsonpScript = null; } }
+  function pollResult() {
+    if (!pending || !activeRequestId) return;
+    const callback = '__pulseAdmissionCallback_' + Date.now() + '_' + Math.floor(Math.random()*1e6);
+    window[callback] = result => {
+      try {
+        if (result && result.success && result.serial) { showSuccess(result); return; }
+        if (result && result.success === false && result.pending !== true && result.message) {
+          pending = false; clearInterval(pollTimer); pollTimer = null; setBusy(false); setStatus(result.message, 'error'); return;
+        }
+      } finally {
+        try { delete window[callback]; } catch (_) { window[callback] = undefined; }
+        removeJsonp();
+      }
+    };
+    removeJsonp();
+    jsonpScript = document.createElement('script');
+    jsonpScript.src = API_URL + '?action=result&requestId=' + encodeURIComponent(activeRequestId) + '&callback=' + encodeURIComponent(callback) + '&_=' + Date.now();
+    jsonpScript.onerror = () => { try { delete window[callback]; } catch (_) {} removeJsonp(); };
+    document.head.appendChild(jsonpScript);
+    pollCount++;
+    if (Date.now() - submissionStartedAt > 90000) {
+      clearInterval(pollTimer); pollTimer = null;
+      // Do not claim failure or invite resubmission: the POST may already have been saved.
+      setStatus('অনুরোধটি এখনো নিশ্চিত করা যায়নি। একই ফর্ম আবার জমা দেবেন না—আপনার তথ্য Sheet-এ জমা হয়ে থাকতে পারে। ইন্টারনেট যাচাই করে “অবস্থা যাচাই করুন” বাটনে ক্লিক করুন।', 'info');
+      document.getElementById('retryCheckBtn').classList.remove('hidden');
+    }
+  }
+  function sendSubmission(data) {
+    const hiddenForm = document.createElement('form');
+    hiddenForm.method = 'POST'; hiddenForm.action = API_URL; hiddenForm.target = 'submitSink'; hiddenForm.style.display = 'none';
+    const fields = { action: 'submit', requestId: activeRequestId, data: JSON.stringify(data) };
+    Object.entries(fields).forEach(([name, value]) => { const input = document.createElement('input'); input.type = 'hidden'; input.name = name; input.value = value; hiddenForm.appendChild(input); });
+    document.body.appendChild(hiddenForm);
+    try { hiddenForm.submit(); } finally { setTimeout(() => hiddenForm.remove(), 1000); }
+  }
+  form.addEventListener('submit', e => {
+    e.preventDefault(); clearStatus();
+    const data = collectData(); const issue = validate(data);
+    if (issue) { setStatus(issue, 'error'); return; }
+    if (pending) return;
+    latestStudent = data; activeRequestId = makeRequestId(); pending = true; pollCount = 0; submissionStartedAt = Date.now();
+    setBusy(true); setStatus('আপনার তথ্য নিরাপদে পাঠানো হচ্ছে। নিশ্চিতকরণ পাওয়া পর্যন্ত অপেক্ষা করুন…', 'info');
+    document.getElementById('retryCheckBtn').classList.add('hidden');
+    try {
+      sendSubmission(data);
+      // Start polling shortly after POST so the Apps Script has time to write the row.
+      setTimeout(pollResult, 1400);
+      pollTimer = setInterval(pollResult, 2500);
+    } catch (err) {
+      pending = false; setBusy(false);
+      setStatus('ফর্ম পাঠানো যায়নি। ইন্টারনেট সংযোগ পরীক্ষা করুন। যদি Sheet-এ তথ্য জমা হয়ে থাকে, পুনরায় জমা দেওয়ার আগে অ্যাডমিনের সঙ্গে যোগাযোগ করুন।', 'error');
+    }
+  });
+  document.getElementById('retryCheckBtn').addEventListener('click', () => {
+    if (!activeRequestId) return;
+    pending = true; submissionStartedAt = Date.now(); setBusy(true);
+    setStatus('আগের অনুরোধের ফলাফল যাচাই করা হচ্ছে…', 'info');
+    document.getElementById('retryCheckBtn').classList.add('hidden');
+    pollResult(); pollTimer = setInterval(pollResult, 2500);
+  });
+  document.getElementById('downloadBtn').addEventListener('click', () => { if (latestStudent && serialBox.textContent !== '—') window.print(); });
+  document.getElementById('imageBtn').addEventListener('click', async () => {
+    if (!latestStudent || serialBox.textContent === '—') return;
+    const student = latestStudent, serial = serialBox.textContent;
+    const entries = [
+      ['Serial Number', serial], ['Name', student.name], ['Course', student.course], ['Batch', student.batch], ['Phone', student.phone],
+      ['Previous Exam Status', student.examStatus], ['Attempts', student.examStatus === 'Failed Student' ? student.attempts : 'Not applicable'],
+      ['District', student.district], ['Upazila', student.upazila], ['Address', student.address], ['Exam Target', 'March 2027']
+    ];
+    const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+    const W=900, rowH=62, startY=260, H=startY+entries.length*rowH+105;
+    const rows=entries.map((r,i)=>{const y=startY+i*rowH;return `<rect x="52" y="${y}" width="796" height="${rowH-7}" rx="9" fill="${i%2?'#fff7f7':'#ffffff'}" stroke="#eadcde"/><text x="72" y="${y+22}" font-size="14" fill="#666">${esc(r[0])}</text><text x="72" y="${y+45}" font-size="18" font-weight="700" fill="#202124">${esc(r[1])}</text>`;}).join('');
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="100%" height="100%" fill="#f7f5f5"/><rect x="22" y="22" width="856" height="${H-44}" rx="20" fill="#fff" stroke="#e8dadd"/><rect x="22" y="22" width="856" height="205" rx="20" fill="#8f1020"/><image href="${LOGO_URL}" x="65" y="47" width="76" height="76" preserveAspectRatio="xMidYMid meet"/><text x="480" y="76" text-anchor="middle" font-size="24" font-weight="900" fill="#fff">PULSE NURSING COACHING</text><text x="480" y="108" text-anchor="middle" font-size="15" fill="#ffe9ec">License &amp; Job Coaching</text><text x="450" y="160" text-anchor="middle" font-size="25" font-weight="900" fill="#fff">ADMISSION INTEREST RECEIPT</text><text x="450" y="193" text-anchor="middle" font-size="15" fill="#ffe9ec">Nursing License Exam Preparation · March 2027</text>${rows}<text x="450" y="${H-62}" text-anchor="middle" font-size="15" font-weight="800" fill="#8f1020">নার্স গড়ার প্রত্যয়ে</text><text x="450" y="${H-38}" text-anchor="middle" font-size="12" fill="#666">Admission interest record · Final admission is not confirmed</text></svg>`;
+    const blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}); const url=URL.createObjectURL(blob); const img=new Image(); img.crossOrigin='anonymous';
+    img.onload=()=>{try{const canvas=document.createElement('canvas');canvas.width=W*2;canvas.height=H*2;const ctx=canvas.getContext('2d');ctx.scale(2,2);ctx.drawImage(img,0,0,W,H);canvas.toBlob(png=>{URL.revokeObjectURL(url);if(!png){setStatus('PNG তৈরি করা যায়নি। Print/PDF ব্যবহার করুন।','error');return;}const dl=document.createElement('a');dl.href=URL.createObjectURL(png);dl.download=`Pulse-Admission-${serial}.png`;dl.click();setTimeout(()=>URL.revokeObjectURL(dl.href),3000);},'image/png');}catch(err){URL.revokeObjectURL(url);setStatus('লোগো লোড বা ব্রাউজারের নিরাপত্তা-নীতির কারণে PNG তৈরি করা যায়নি। PDF/Print ব্যবহার করুন।','error');}};
+    img.onerror=()=>{URL.revokeObjectURL(url);setStatus('PNG তৈরির জন্য লোগো লোড করা যায়নি। PDF/Print ব্যবহার করুন।','error');};img.src=url;
+  });
+  document.getElementById('newBtn').addEventListener('click', () => {
+    form.reset(); attemptsField.classList.add('hidden'); form.querySelectorAll('input[name="attempts"]').forEach(input=>input.required=false);
+    latestStudent=null; activeRequestId=''; success.classList.remove('show'); form.style.display=''; clearStatus();
+    document.getElementById('retryCheckBtn').classList.add('hidden'); window.scrollTo({top:0,behavior:'smooth'});
+  });
+  // The iframe is only a transport target. The authoritative result comes from the JSONP polling endpoint.
+})();
+</script>
+</body>
+</html>
